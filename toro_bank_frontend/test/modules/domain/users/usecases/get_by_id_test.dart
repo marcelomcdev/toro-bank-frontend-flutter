@@ -33,6 +33,6 @@ main() {
   test('should return an InvalidTextError when id is invalid', () async {
     when(repository.getById(id)).thenAnswer((_) async => Right(user));
     var result = await useCase(0);
-    expect(result.fold((l) => l, (r) => r), isA<InvalidTextError>());
+    expect(result.fold((l) => l, (r) => r), isA<InvalidIdentifierError>());
   });
 }

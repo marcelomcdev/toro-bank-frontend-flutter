@@ -14,7 +14,7 @@ class GetByIdImpl implements GetById {
   @override
   Future<Either<UserException, User>> call(int id) async {
     if (id == 0) {
-      return Left(InvalidTextError());
+      return Left(InvalidIdentifierError());
     }
     return repository.getById(id);
   }
