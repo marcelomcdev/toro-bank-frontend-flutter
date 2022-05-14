@@ -1,5 +1,4 @@
 // ignore_for_file: avoid_types_as_parameter_names
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -12,8 +11,7 @@ main() {
   final repository = UserRepositoryMock();
   final useCase = GetByIdImpl(repository);
   const id = 1;
-  final User user = User(
-      1, 'Marcelo', '300123', '123456789101', 0, 'marcelo.castro', '123456');
+  final User user = User(1, 'Marcelo', 300123, '123456789101', 0);
   test('should return an user', () async {
     when(repository.getById(id)).thenAnswer((_) async => Right(user));
     final result = await useCase(id);

@@ -4,9 +4,9 @@ import '../../domain/entities/user.dart';
 import 'dart:convert';
 
 class ResultUserModel extends User {
-  ResultUserModel(int id, String name, String accountNumber, String cPF,
-      double balance, String userName, String password)
-      : super(id, name, accountNumber, cPF, balance, userName, password);
+  ResultUserModel(
+      int id, String name, int accountNumber, String cpf, double balance)
+      : super(id, name, accountNumber, cpf, balance);
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
@@ -16,8 +16,6 @@ class ResultUserModel extends User {
     result.addAll({'accountNumber': accountNumber});
     result.addAll({'cpf': cpf});
     result.addAll({'balance': balance});
-    result.addAll({'userName': userName});
-    result.addAll({'password': password});
 
     return result;
   }
@@ -26,11 +24,9 @@ class ResultUserModel extends User {
     return ResultUserModel(
       map['id']?.toInt() ?? 0,
       map['name'] ?? '',
-      map['accountNumber'] ?? '',
+      map['accountNumber']?.toInt() ?? 0,
       map['cpf'] ?? '',
       map['balance']?.toDouble() ?? 0.0,
-      map['userName'] ?? '',
-      map['password'] ?? '',
     );
   }
 

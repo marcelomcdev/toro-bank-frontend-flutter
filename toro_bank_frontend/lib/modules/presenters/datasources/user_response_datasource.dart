@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:toro_bank_frontend/modules/domain/errors/errors.dart';
 import 'package:toro_bank_frontend/modules/infrastructure/datasources/user_datasource.dart';
@@ -14,17 +16,20 @@ class UserResponseDataSource implements UserDataSource {
   UserResponseDataSource(this.dio);
   String genericError = "Erro ao retornar usuário";
 
+  // ignore: non_constant_identifier_names
+  Future<bool> IsValidResponse(Response<dynamic> response) async {
+    return (response != null && response.statusCode == 200);
+  }
+
   @override
   Future<ResultUserModel> getUser(int id) async {
-    final response =
-        await dio.get('https://localhost:7025/user/${id}'.normalize());
-    if (response.statusCode == 200) {
-      final list = (response.data as List)
-          .map((e) => ResultUserModel.fromMap(e))
-          .toList();
+    var body = jsonEncode({"id": id});
 
-      var firstItem = list.where((element) => element.id == id).first;
-      return firstItem;
+    final response = await dio.post('https://localhost:7025/user', data: body);
+
+    if (await IsValidResponse(response)) {
+      var user = ResultUserModel.fromMap(response.data);
+      return user;
     } else {
       throw DataSourceError("$genericError!");
     }
@@ -32,14 +37,29 @@ class UserResponseDataSource implements UserDataSource {
 
   @override
   Future<ResultUserModel> getUserByCpf(String cpf) async {
-    final response =
-        await dio.get('https://localhost:7025/user/${cpf}'.normalize());
-    if (response.statusCode == 200) {
+    var body = jsonEncode({"cpf": cpf});
+    final response = await dio.post('https://localhost:7025/user/', data: body);
+    if (await IsValidResponse(response)) {
+      var user = ResultUserModel.fromMap(response.data);
+      return user;
+      // final list = (response.data as List)
+      //     .map((e) => ResultUserModel.fromMap(e))
+      //     .toList();
+      // var firstItem = list.where((element) => element.cpf == cpf).first;
+      // return firstItem;
+    } else {
+      throw DataSourceError("$genericError por cpf!");
+    }
+  }
+
+  @override
+  Future<List<ResultUserModel>> getList(String cpf) async {
+    final response = await dio.get('https://localhost:7025/user'.normalize());
+    if (await IsValidResponse(response)) {
       final list = (response.data as List)
           .map((e) => ResultUserModel.fromMap(e))
           .toList();
-      var firstItem = list.where((element) => element.cpf == cpf).first;
-      return firstItem;
+      return list;
     } else {
       throw DataSourceError("$genericError por cpf!");
     }

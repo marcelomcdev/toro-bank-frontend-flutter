@@ -9,8 +9,7 @@ import '../mocks/user_data_source_mock.dart';
 main() {
   final datasource = UserDataSourceMock();
   final repository = UserRepositoryImpl(datasource);
-  final user = ResultUserModel(
-      1, "Marcelo", "300123", "123456789101", 0, "marcelo.castro", "123456");
+  final user = ResultUserModel(1, "Marcelo", 300123, "123456789101", 0);
   test('deve retornar um usuario', () async {
     when(datasource.getUser(any)).thenAnswer((_) async => user);
     final result = await repository.getById(1);

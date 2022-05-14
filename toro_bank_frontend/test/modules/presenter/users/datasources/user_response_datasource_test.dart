@@ -24,7 +24,7 @@ main() {
   });
 
   test('retorna um erro se o código não for 200', () async {
-    var id = 1;
+    var id = 0;
     when(dio.get(any)).thenAnswer((_) async =>
         Response(data: null, statusCode: 400, requestOptions: null));
 
@@ -32,7 +32,7 @@ main() {
     expect(future, throwsA(isA<DataSourceError>()));
   });
 
-  test('deve retornar um erro setiver erro no dio', () async {
+  test('deve retornar um erro se tiver erro no dio', () async {
     var id = 1;
     when(dio.get(any)).thenThrow(Exception());
 

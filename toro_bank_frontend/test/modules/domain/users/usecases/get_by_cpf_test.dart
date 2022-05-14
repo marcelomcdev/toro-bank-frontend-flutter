@@ -12,8 +12,7 @@ main() {
   final repository = UserRepositoryMock();
   final useCase = GetByCPFImpl(repository);
   const String cpf = "01255544455";
-  final User user = User(
-      1, 'Marcelo', '300123', '123456789101', 0, 'marcelo.castro', '123456');
+  final User user = User(1, 'Marcelo', 300123, '123456789101', 0);
 
   setUp(() => {});
 
