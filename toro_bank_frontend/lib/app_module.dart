@@ -1,6 +1,5 @@
-import 'dart:html';
-
-import 'package:dio/dio.dart';
+import 'package:dio/dio.dart' show Dio;
+// ignore: implementation_imports
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:toro_bank_frontend/app_widget.dart';
@@ -19,9 +18,10 @@ class AppModule extends MainModule {
         Bind((i) => UserRepositoryImpl(i())),
         Bind((i) => UserResponseDataSource(i())),
       ];
-  @override
-  List get routers => throw UnimplementedError();
 
   @override
   Widget get bootstrap => const AppWidget();
+
+  @override
+  List<ModularRouter> get routers => throw UnimplementedError();
 }
