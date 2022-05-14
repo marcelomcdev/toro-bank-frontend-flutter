@@ -7,8 +7,7 @@ import 'package:toro_bank_frontend/modules/infrastructure/models/result_user_mod
 import 'package:toro_bank_frontend/modules/presenters/datasources/user_response_datasource.dart';
 
 import '../../../utils/user_response.dart';
-
-class DioMock extends Mock implements Dio {}
+import '../mocks/dio_mock.dart';
 
 main() {
   final dio = DioMock();
@@ -21,7 +20,6 @@ main() {
         data: jsonDecode(userResult), statusCode: 200, requestOptions: null));
 
     final Future<ResultUserModel> future = datasource.getUser(id);
-    //final future = await datasource.getUser(id);
     expect(future, completes);
   });
 
