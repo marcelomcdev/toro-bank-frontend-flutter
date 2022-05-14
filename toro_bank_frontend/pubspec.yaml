@@ -30,7 +30,7 @@ environment:
 dependencies:
   dartz:
   dio:
-  flutter_modular: ^1.3.2
+  flutter_modular: ^2.0.0
   flutter:
     sdk: flutter
 
