@@ -22,8 +22,13 @@ class UserResponseDataSource implements UserDataSource {
       // final list = (response.data['items'] as List)
       //     .map((e) => ResultUserModel.fromMap(e))
       //     .toList();
-      final item = (response.data as ResultUserModel);
-      return item;
+
+      final list = (response.data as List)
+          .map((e) => ResultUserModel.fromMap(e))
+          .toList();
+
+      var firstItem = list.where((element) => element.id == id).first;
+      return firstItem;
     } else {
       throw DataSourceError("Erro ao retornar usuário!");
     }
