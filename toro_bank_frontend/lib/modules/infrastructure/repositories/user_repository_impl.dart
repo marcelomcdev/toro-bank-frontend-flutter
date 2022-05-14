@@ -13,9 +13,6 @@ class UserRepositoryImpl implements UserRepository {
   UserRepositoryImpl(this.dataSource);
 
   @override
-  Future<Either<UserException, List<User>>> getByCpf(String cpf) {}
-
-  @override
   Future<Either<UserException, User>> getById(int id) async {
     try {
       final result = await dataSource.getUser(id);
@@ -24,6 +21,18 @@ class UserRepositoryImpl implements UserRepository {
       return Left(e);
     } catch (e) {
       return Left(DataSourceError('Erro: Id inválida!'));
+    }
+  }
+
+  @override
+  Future<Either<UserException, User>> getByCpf(String cpf) async {
+    try {
+      final result = await dataSource.getUserByCpf(cpf);
+      return Right(result);
+    } on DataSourceError catch (e) {
+      return Left(e);
+    } catch (e) {
+      return Left(DataSourceError('Erro: CPF inválido!'));
     }
   }
 }

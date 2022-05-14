@@ -4,7 +4,7 @@ import 'package:toro_bank_frontend/modules/domain/errors/errors.dart';
 import 'package:toro_bank_frontend/modules/domain/repositories/user_repository.dart';
 
 abstract class GetByCPF {
-  Future<Either<UserException, List<User>>> call(String cpf);
+  Future<Either<UserException, User>> call(String cpf);
 }
 
 class GetByCPFImpl implements GetByCPF {
@@ -12,7 +12,7 @@ class GetByCPFImpl implements GetByCPF {
   GetByCPFImpl(this.repository);
 
   @override
-  Future<Either<UserException, List<User>>> call(String cpf) async {
+  Future<Either<UserException, User>> call(String cpf) async {
     if (cpf == null || cpf.isEmpty) {
       return Left(InvalidTextError());
     }

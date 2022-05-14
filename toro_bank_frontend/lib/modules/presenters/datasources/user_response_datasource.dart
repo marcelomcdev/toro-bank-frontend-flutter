@@ -12,17 +12,13 @@ extension on String {
 class UserResponseDataSource implements UserDataSource {
   final Dio dio;
   UserResponseDataSource(this.dio);
+  String genericError = "Erro ao retornar usuário";
 
   @override
   Future<ResultUserModel> getUser(int id) async {
     final response =
         await dio.get('https://localhost:7025/user/${id}'.normalize());
     if (response.statusCode == 200) {
-      //quando usar lista.
-      // final list = (response.data['items'] as List)
-      //     .map((e) => ResultUserModel.fromMap(e))
-      //     .toList();
-
       final list = (response.data as List)
           .map((e) => ResultUserModel.fromMap(e))
           .toList();
@@ -30,7 +26,22 @@ class UserResponseDataSource implements UserDataSource {
       var firstItem = list.where((element) => element.id == id).first;
       return firstItem;
     } else {
-      throw DataSourceError("Erro ao retornar usuário!");
+      throw DataSourceError("$genericError!");
+    }
+  }
+
+  @override
+  Future<ResultUserModel> getUserByCpf(String cpf) async {
+    final response =
+        await dio.get('https://localhost:7025/user/${cpf}'.normalize());
+    if (response.statusCode == 200) {
+      final list = (response.data as List)
+          .map((e) => ResultUserModel.fromMap(e))
+          .toList();
+      var firstItem = list.where((element) => element.cpf == cpf).first;
+      return firstItem;
+    } else {
+      throw DataSourceError("$genericError por cpf!");
     }
   }
 }
