@@ -1,10 +1,13 @@
 import 'package:dio/dio.dart' show Dio;
+import 'package:flutter/cupertino.dart';
 // ignore: implementation_imports
 import 'package:flutter/src/widgets/framework.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:toro_bank_frontend/app_widget.dart';
 import 'package:toro_bank_frontend/modules/domain/usecases/user/get_by_id.dart';
 import 'package:toro_bank_frontend/modules/infrastructure/repositories/user_repository_impl.dart';
+import 'package:toro_bank_frontend/modules/presenters/pages/home/home_page.dart';
 
 import 'modules/domain/usecases/user/get_by_cpf.dart';
 import 'modules/presenters/datasources/user_response_datasource.dart';
@@ -23,5 +26,6 @@ class AppModule extends MainModule {
   Widget get bootstrap => const AppWidget();
 
   @override
-  List<ModularRouter> get routers => throw UnimplementedError();
+  List<ModularRouter> get routers =>
+      [ModularRouter('/', child: (_, __) => const HomePage())];
 }
