@@ -15,17 +15,21 @@ class UserResponseDataSource implements UserDataSource {
   final Dio dio;
   UserResponseDataSource(this.dio);
   String genericError = "Erro ao retornar usuário";
+  var nullValue;
 
   // ignore: non_constant_identifier_names
   Future<bool> IsValidResponse(Response<dynamic> response) async {
-    return (response != null && response.statusCode == 200);
+    return (response != nullValue && response.statusCode == 200);
   }
+
+  var kUrlBase = '';
+  var uri = Uri(path: 'http://10.0.2.2:5025/user');
 
   @override
   Future<ResultUserModel> getUser(int id) async {
     var body = jsonEncode({"id": id});
 
-    final response = await dio.post('https://localhost:7025/user', data: body);
+    final response = await dio.post('http://10.0.2.2:5025/user', data: body);
 
     if (await IsValidResponse(response)) {
       var user = ResultUserModel.fromMap(response.data);

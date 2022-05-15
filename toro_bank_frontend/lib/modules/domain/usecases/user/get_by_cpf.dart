@@ -10,10 +10,11 @@ abstract class GetByCPF {
 class GetByCPFImpl implements GetByCPF {
   final UserRepository repository;
   GetByCPFImpl(this.repository);
+  var nullValue;
 
   @override
   Future<Either<UserException, User>> call(String cpf) async {
-    if (cpf == null || cpf.isEmpty) {
+    if (cpf == nullValue || cpf.isEmpty) {
       return Left(InvalidTextError());
     }
 
