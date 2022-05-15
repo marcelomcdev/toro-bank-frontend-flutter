@@ -24,7 +24,7 @@ main() {
     var emptyValue;
     when(repository.getById(idNotFound))
         .thenAnswer((_) async => Right(emptyValue));
-    var result = await useCase(null);
+    var result = await useCase(0);
     expect(result, null);
   });
 

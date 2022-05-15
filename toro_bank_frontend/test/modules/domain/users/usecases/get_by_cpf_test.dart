@@ -18,17 +18,18 @@ main() {
 
   test('should return an users list', () async {
     when(repository.getByCpf(cpf)).thenAnswer((_) async => Right(user));
-
+    // ignore: prefer_typing_uninitialized_variables
+    var nullValue;
     final result = await useCase(cpf);
     expect(result, isA<Right>());
-    expect(result | null, isA<List<User>>());
+    expect(result | nullValue, isA<List<User>>());
   });
 
   test('deve retornar um InvalidTextError caso o cpf seja invalido', () async {
     //mock
     when(repository.getByCpf(cpf)).thenAnswer((_) async => Right(user));
 
-    var result = await useCase(null);
+    var result = await useCase('');
     expect(result.fold((l) => l, (r) => r), isA<InvalidTextError>());
     result = await useCase("");
     expect(result.fold((l) => l, (r) => r), isA<InvalidTextError>());
