@@ -12,12 +12,16 @@ import '../mocks/dio_mock.dart';
 main() {
   final dio = DioMock();
   final datasource = UserResponseDataSource(dio);
+  var any;
+  var nullValue;
 
   test('deve completar se o código for 200', () async {
     var id = 1;
 
     when(dio.get(any)).thenAnswer((_) async => Response(
-        data: jsonDecode(userResult), statusCode: 200, requestOptions: null));
+        data: jsonDecode(userResult),
+        statusCode: 200,
+        requestOptions: nullValue));
 
     final Future<ResultUserModel> future = datasource.getUser(id);
     expect(future, completes);
@@ -26,7 +30,7 @@ main() {
   test('retorna um erro se o código não for 200', () async {
     var id = 0;
     when(dio.get(any)).thenAnswer((_) async =>
-        Response(data: null, statusCode: 400, requestOptions: null));
+        Response(data: null, statusCode: 400, requestOptions: nullValue));
 
     final Future<ResultUserModel> future = datasource.getUser(id);
     expect(future, throwsA(isA<DataSourceError>()));

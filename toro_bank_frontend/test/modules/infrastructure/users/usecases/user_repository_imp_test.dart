@@ -10,10 +10,13 @@ main() {
   final datasource = UserDataSourceMock();
   final repository = UserRepositoryImpl(datasource);
   final user = ResultUserModel(1, "Marcelo", 300123, "123456789101", 0);
+  var nullValue;
+  var any;
   test('deve retornar um usuario', () async {
+    int id = 1;
     when(datasource.getUser(any)).thenAnswer((_) async => user);
     final result = await repository.getById(1);
-    expect(result | null, isA<ResultUserModel>());
+    expect(result | nullValue, isA<ResultUserModel>());
   });
 
   test('deve retornar um DataSourceError se o datasource falhar', () async {
