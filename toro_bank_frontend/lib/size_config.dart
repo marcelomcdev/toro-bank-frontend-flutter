@@ -18,9 +18,6 @@ class SizeConfig {
 // Get the proportionate height as per screen size
 double getProportionateScreenHeight(double inputHeight) {
   double screenHeight = SizeConfig.screenHeight;
-  print('------------------------------------------------');
-  print('altura: $screenHeight');
-  print('nova: (($inputHeight / 812.0) * $screenHeight)');
   // 812 is the layout height that designer use
   return (inputHeight / 812.0) * screenHeight;
 }

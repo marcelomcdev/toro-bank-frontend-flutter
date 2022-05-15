@@ -21,20 +21,21 @@ class TotalValueBox extends StatelessWidget {
       margin: margin,
       padding: padding,
       decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(
-            color: const Color(0xFFD4D4D4),
+        color: Colors.white,
+        border: Border.all(
+          color: const Color(0xFFD4D4D4),
+        ),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(5.0),
+        ),
+        boxShadow: const [
+          BoxShadow(
+            blurRadius: 3,
+            color: Colors.grey,
+            offset: Offset(1, 2),
           ),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(5.0),
-          ),
-          boxShadow: const [
-            BoxShadow(
-              blurRadius: 10,
-              color: Colors.grey,
-              offset: Offset(1, 3),
-            ),
-          ]),
+        ],
+      ),
       child: Column(
         children: [
           Text(

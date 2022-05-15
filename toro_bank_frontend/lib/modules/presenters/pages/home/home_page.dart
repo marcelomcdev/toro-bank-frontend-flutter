@@ -17,7 +17,10 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kToroHeaderColor,
-        title: const Text('Home'),
+        title: const Text(
+          'Resumo do Patrimônio',
+          style: TextStyle(fontSize: 16),
+        ),
       ),
       body: const Body(),
     );
