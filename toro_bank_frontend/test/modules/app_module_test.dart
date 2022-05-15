@@ -14,6 +14,8 @@ import 'utils/user_response.dart';
 
 main() {
   final dio = DioMock();
+  var any;
+  var nullValue;
   initModule(AppModule(), changeBinds: [
     Bind<Dio>((i) => dio),
   ]);
@@ -27,11 +29,13 @@ main() {
   test('deve trazer um usuario', () async {
     var id = 1;
     when(dio.get(any)).thenAnswer((_) async => Response(
-        data: jsonDecode(userResult), statusCode: 200, requestOptions: null));
+        data: jsonDecode(userResult),
+        statusCode: 200,
+        requestOptions: nullValue));
 
     final usecase = Modular.get<UserRepository>();
     final result = await usecase.getById(id);
-    expect(result | null, isA<User>());
+    expect(result | nullValue, isA<User>());
     expect(usecase, isA<UserRepository>());
   });
 }
