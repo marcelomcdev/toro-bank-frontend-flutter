@@ -8,7 +8,7 @@ ThemeData theme() {
     fontFamily: "Muli",
     appBarTheme: appBarTheme(),
     textTheme: textTheme(),
-    inputDecorationTheme: inputDecorationTheme(),
+    //inputDecorationTheme: inputDecorationTheme(),
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
 }
@@ -37,7 +37,6 @@ TextTheme textTheme() {
     bodyText2: TextStyle(color: kTextColor),
   );
 }
-
 
 AppBarTheme appBarTheme() {
   return const AppBarTheme(
