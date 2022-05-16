@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/purchase/purchase-order/shop/components/balance_account_info.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/purchase/purchase-order/shop/components/purchase_info.dart';
-import 'package:toro_bank_frontend/modules/presenters/pages/purchase/purchase-order/shop/components/purchase_validator.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/purchase/purchase-order/shop/components/user_info.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/shared/components/default_button.dart';
 
@@ -13,6 +12,8 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  double actualBalance = 11543.25;
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -20,20 +21,21 @@ class _BodyState extends State<Body> {
         const UserInfo(
             name: 'Jorge Santana dos Santos',
             bank: 'Banco: 352',
-            account: 'Conta: 300123'),
+            account: 'Conta: 300123',
+            assetProfileImage: 'assets/images/Profile Image.png'),
         const Divider(),
-        const BalanceAccountInfo(
-          balance: 11543.25,
+        BalanceAccountInfo(
+          balance: actualBalance,
         ),
         const Divider(),
-        const PurchaseInfo(
+        PurchaseInfo(
           assetName: 'CMG3',
           value: 23.44,
+          actualBalance: actualBalance,
         ),
         const Divider(),
-        const PurchaseValidator(),
         DefaultButtom(
-          text: 'text',
+          text: 'CONFIRMAR',
           pressed: () {},
         ),
       ]),

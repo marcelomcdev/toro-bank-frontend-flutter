@@ -1,17 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:toro_bank_frontend/modules/presenters/helpers/format_helper.dart';
+import 'package:toro_bank_frontend/modules/presenters/pages/purchase/purchase-order/shop/components/purchase_validator.dart';
 
-class PurchaseInfo extends StatelessWidget {
+// ignore: must_be_immutable
+class PurchaseInfo extends StatefulWidget {
   final String assetName;
   final double value;
-  const PurchaseInfo({
+  final double actualBalance;
+
+  PurchaseInfo({
     Key? key,
     required this.assetName,
     required this.value,
+    required this.actualBalance,
   }) : super(key: key);
+
+  double total = 0;
+
+  @override
+  State<PurchaseInfo> createState() => _PurchaseInfoState();
+}
+
+class _PurchaseInfoState extends State<PurchaseInfo> {
+  double _total = 0;
+  double _actualBalance = 0;
+  bool _showValidator = false;
 
   @override
   Widget build(BuildContext context) {
+    var assetName = widget.assetName;
+    var assetValue = widget.value;
+
+    @override
+    void initState() {
+      super.initState();
+      _total = 0;
+      _actualBalance = widget.actualBalance;
+      _showValidator = false;
+    }
+
+    setState(() {});
+
+    double getTotal() {
+      return _total;
+    }
+
     return Container(
       margin: const EdgeInsets.all(0),
       padding: const EdgeInsets.all(13.0),
@@ -41,18 +75,20 @@ class PurchaseInfo extends StatelessWidget {
                 ),
               ),
             ),
-            const Expanded(
+            Expanded(
               flex: 6,
               child: Text(
-                'CMG3',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                assetName,
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
             ),
-            const Expanded(
+            Expanded(
               flex: 2,
               child: Text(
-                'R\$ 23,44',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                FormatHelper().getCurrency(assetValue),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
             ),
           ],
@@ -74,6 +110,25 @@ class PurchaseInfo extends StatelessWidget {
                 onChanged: (String? value) {
                   //roda quando muda o valor
                   debugPrint(value);
+                  debugPrint('Total no inicio: $_total');
+                  debugPrint('---------COMPRANDO------------');
+                  debugPrint('Saldo antes da compra: ' +
+                      widget.actualBalance.toString());
+                  //debugPrint(widget.actualBalance.toString());
+
+                  setState(() {
+                    _total = (double.parse(value == null || value == ''
+                            ? '0'
+                            : value.toString()) *
+                        assetValue);
+                    _actualBalance = widget.actualBalance - _total;
+                  });
+
+                  debugPrint('---------FINALIZANDO------------');
+                  debugPrint('Total no fim: $_total');
+                  debugPrint('Saldo depois da compra: $_actualBalance');
+
+                  _showValidator = (_actualBalance < 0);
                 },
                 style: const TextStyle(
                     fontWeight: FontWeight.normal, fontSize: 20),
@@ -81,24 +136,34 @@ class PurchaseInfo extends StatelessWidget {
             ),
           ],
         ),
-        Row(
-          children: const [
-            Expanded(
-              flex: 3,
-              child: Text(
-                'Total',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 18.0),
+          child: Row(
+            children: [
+              const Expanded(
+                flex: 5,
+                child: Text(
+                  'Total',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
               ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Text(
-                'R\$ 427,50',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-              ),
-            ),
-          ],
+              Expanded(
+                  flex: 4,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        FormatHelper().getCurrency(_total),
+                        textAlign: TextAlign.end,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                    ],
+                  )),
+            ],
+          ),
         ),
+        if (_showValidator) const PurchaseValidator() else Container()
       ]),
     );
   }
