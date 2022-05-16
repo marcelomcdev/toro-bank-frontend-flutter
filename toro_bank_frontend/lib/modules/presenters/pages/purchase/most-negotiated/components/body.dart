@@ -74,24 +74,30 @@ class _BodyState extends State<Body> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: const [
                         Text(
-                          'Ativos mais negociados nos últimos 7 dias',
+                          'Estes são os ativos mais negociados nos últimos 7 dias\ne estão disponíveis para compra.',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 17,
+                              fontSize: 14,
                               fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
                   ),
                 ),
-                Column(
-                  children: [
-                    CustomTableNegotiatedAssets(
-                      userAssets: _userAssets,
-                      headerColumnNames: _headerColumnNames,
-                    )
-                  ],
+                SizedBox(
+                  child: Padding(
+                    padding: const EdgeInsets.all(0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CustomTableNegotiatedAssets(
+                          userAssets: _userAssets,
+                          headerColumnNames: _headerColumnNames,
+                        )
+                      ],
+                    ),
+                  ),
                 )
               ],
             ),

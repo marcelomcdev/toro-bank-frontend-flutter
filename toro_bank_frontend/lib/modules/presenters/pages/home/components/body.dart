@@ -185,38 +185,38 @@ class _BodyState extends State<Body> {
     );
   }
 
-  List<DataColumn> _buildTableHeader(List<String> items) {
-    List<DataColumn> listReturn = List.generate(
-        items.length,
-        (index) => DataColumn(
-              label: Text(items[index]),
-            ));
-    return listReturn;
-  }
+  // List<DataColumn> _buildTableHeader(List<String> items) {
+  //   List<DataColumn> listReturn = List.generate(
+  //       items.length,
+  //       (index) => DataColumn(
+  //             label: Text(items[index]),
+  //           ));
+  //   return listReturn;
+  // }
 
-  DataRow _buildDataRow(
-      String imageName, String text, int quantity, double value,
-      {bool highlightName = false}) {
-    return DataRow(cells: [
-      DataCell(
-        CircleAvatar(
-          radius: 15,
-          backgroundImage: imageName.contains('/')
-              ? AssetImage(imageName)
-              : AssetImage('assets/images/$imageName'),
-        ),
-      ),
-      DataCell(
-        Text(
-          text,
-          style: TextStyle(
-              fontWeight: highlightName ? FontWeight.bold : FontWeight.normal,
-              color: Colors.black,
-              fontSize: 15),
-        ),
-      ),
-      DataCell(Text(quantity.toString())),
-      DataCell(Text(getCurrency(value))),
-    ]);
-  }
+  // DataRow _buildDataRow(
+  //     String imageName, String text, int quantity, double value,
+  //     {bool highlightName = false}) {
+  //   return DataRow(cells: [
+  //     DataCell(
+  //       CircleAvatar(
+  //         radius: 15,
+  //         backgroundImage: imageName.contains('/')
+  //             ? AssetImage(imageName)
+  //             : AssetImage('assets/images/$imageName'),
+  //       ),
+  //     ),
+  //     DataCell(
+  //       Text(
+  //         text,
+  //         style: TextStyle(
+  //             fontWeight: highlightName ? FontWeight.bold : FontWeight.normal,
+  //             color: Colors.black,
+  //             fontSize: 15),
+  //       ),
+  //     ),
+  //     DataCell(Text(quantity.toString())),
+  //     DataCell(Text(getCurrency(value))),
+  //   ]);
+  // }
 }

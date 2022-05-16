@@ -13,27 +13,26 @@ class CustomTableNegotiatedAssets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        DataTable(
-          sortColumnIndex: 1,
-          sortAscending: true,
-          columns: _buildTableHeader(headerColumnNames).toList(),
-          rows: userAssets
-              .map((e) =>
-                  _buildDataRow(e.image, e.name, e.value, highlightName: true))
-              .toList(),
-        ),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          DataTable(
+            sortColumnIndex: 2,
+            sortAscending: true,
+            columns: _buildTableHeader(headerColumnNames).toList(),
+            rows: userAssets
+                .map((e) => _buildDataRow(e.image, e.name, e.value,
+                    highlightName: true))
+                .toList(),
+          ),
+        ],
+      ),
     );
   }
 
   List<DataColumn> _buildTableHeader(List<String> items) {
     List<DataColumn> listReturn = List.generate(
-        items.length,
-        (index) => DataColumn(
-              label: Text(items[index]),
-            ));
+        items.length, (index) => DataColumn(label: Text(items[index])));
     return listReturn;
   }
 

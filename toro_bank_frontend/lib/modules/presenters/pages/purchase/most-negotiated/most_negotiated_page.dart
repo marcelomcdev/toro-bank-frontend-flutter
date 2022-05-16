@@ -10,9 +10,21 @@ class MostNegotiatedAssetPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kToroHeaderColor,
-        title: const Text('Home'),
+        title: const Text('Ativos mais negociados'),
       ),
       body: const Body(),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.production_quantity_limits_sharp),
+              label: 'Ativos'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_circle_rounded), label: 'Perfil'),
+        ],
+        //currentIndex: _selectedIndex,
+        selectedItemColor: kToroTextColor,
+      ),
     );
   }
 }

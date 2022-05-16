@@ -13,18 +13,21 @@ class CustomTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        DataTable(
-          sortColumnIndex: 1,
-          sortAscending: true,
-          columns: _buildTableHeader(headerColumnNames).toList(),
-          rows: userAssets
-              .map((e) => _buildDataRow(e.image, e.name, e.quantity, e.value,
-                  highlightName: true))
-              .toList(),
-        ),
-      ],
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: Column(
+        children: [
+          DataTable(
+            sortColumnIndex: 1,
+            sortAscending: true,
+            columns: _buildTableHeader(headerColumnNames).toList(),
+            rows: userAssets
+                .map((e) => _buildDataRow(e.image, e.name, e.quantity, e.value,
+                    highlightName: true))
+                .toList(),
+          ),
+        ],
+      ),
     );
   }
 
