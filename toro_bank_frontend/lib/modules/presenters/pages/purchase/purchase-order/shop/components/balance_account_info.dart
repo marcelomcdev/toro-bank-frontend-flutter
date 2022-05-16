@@ -25,11 +25,11 @@ class BalanceAccountInfo extends StatelessWidget {
             Row(
               children: [
                 const Expanded(
-                  flex: 3,
+                  flex: 7,
                   child: Text('Conta Corrente'),
                 ),
                 Expanded(
-                  flex: 1,
+                  flex: 3,
                   child: Text(
                     FormatHelper().getCurrency(balance),
                     style: const TextStyle(
