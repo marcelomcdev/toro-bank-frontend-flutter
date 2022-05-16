@@ -21,7 +21,8 @@ class PurchaseValidator extends StatelessWidget {
             ),
             Text(
               'Saldo Indisponível',
-              style: TextStyle(color: Colors.red),
+              style: TextStyle(
+                  color: Colors.red, fontWeight: FontWeight.bold, fontSize: 16),
             )
           ],
         ),
