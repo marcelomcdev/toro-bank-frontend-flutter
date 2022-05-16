@@ -13,7 +13,7 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  final List<String> _headerColumnNames = ['', 'Ativo', 'Valor'];
+  final List<String> _headerColumnNames = ['', 'Ativo', 'Valor', ''];
   List<UserAsset> _userAssets = [];
 
   @override
@@ -74,11 +74,11 @@ class _BodyState extends State<Body> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: const [
                         Text(
-                          'Estes são os ativos mais negociados nos últimos 7 dias\ne estão disponíveis para compra.',
+                          'Estes são os ativos mais negociados nos últimos \n7 dias e já estão disponíveis para compra.',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 14,
+                              fontSize: 12,
                               fontWeight: FontWeight.bold),
                         ),
                       ],

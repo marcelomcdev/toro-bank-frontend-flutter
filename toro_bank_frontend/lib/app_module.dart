@@ -7,6 +7,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:toro_bank_frontend/app_widget.dart';
 import 'package:toro_bank_frontend/modules/domain/usecases/user/get_by_id.dart';
 import 'package:toro_bank_frontend/modules/infrastructure/repositories/user_repository_impl.dart';
+import 'package:toro_bank_frontend/modules/presenters/pages/home/home_page.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/purchase/most-negotiated/most_negotiated_page.dart';
 
 import 'modules/domain/usecases/user/get_by_cpf.dart';
@@ -27,9 +28,8 @@ class AppModule extends MainModule {
 
   @override
   List<ModularRouter> get routers => [
-        //ModularRouter('/', child: (_, __) => const HomePage()),
-        // ModularRouter('/mostnegotiated',
-        //     child: (_, __) => const MostNegotiatedAssetPage()),
-        ModularRouter('/', child: (_, __) => const MostNegotiatedAssetPage()),
+        ModularRouter('/', child: (_, __) => const HomePage()),
+        ModularRouter('/mostnegotiated',
+            child: (_, __) => const MostNegotiatedAssetPage()),
       ];
 }

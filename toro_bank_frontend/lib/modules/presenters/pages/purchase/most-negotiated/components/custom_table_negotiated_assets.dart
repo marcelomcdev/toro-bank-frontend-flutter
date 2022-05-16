@@ -1,7 +1,11 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
+import 'package:toro_bank_frontend/constants.dart';
 
 import 'package:toro_bank_frontend/modules/domain/entities/user_asset.dart';
 import 'package:toro_bank_frontend/modules/presenters/helpers/format_helper.dart';
+import 'package:toro_bank_frontend/modules/presenters/pages/purchase/purchase-order/shop/purchase_order.dart';
 
 class CustomTableNegotiatedAssets extends StatelessWidget {
   final List<String> headerColumnNames;
@@ -17,11 +21,12 @@ class CustomTableNegotiatedAssets extends StatelessWidget {
       child: Column(
         children: [
           DataTable(
-            sortColumnIndex: 2,
+            sortColumnIndex: 0,
             sortAscending: true,
             columns: _buildTableHeader(headerColumnNames).toList(),
             rows: userAssets
-                .map((e) => _buildDataRow(e.image, e.name, e.value,
+                .map((e) => _buildDataRow(
+                    context, e.id, e.image, e.name, e.value,
                     highlightName: true))
                 .toList(),
           ),
@@ -36,7 +41,8 @@ class CustomTableNegotiatedAssets extends StatelessWidget {
     return listReturn;
   }
 
-  DataRow _buildDataRow(String imageName, String text, double value,
+  DataRow _buildDataRow(
+      BuildContext context, int id, String imageName, String text, double value,
       {bool highlightName = false}) {
     return DataRow(cells: [
       DataCell(
@@ -58,6 +64,18 @@ class CustomTableNegotiatedAssets extends StatelessWidget {
       ),
       //DataCell(Text(quantity.toString())),
       DataCell(Text(FormatHelper().getCurrency(value))),
+      DataCell(IconButton(
+          icon: const Icon(Icons.add_sharp),
+          color: kToroTextColor,
+          iconSize: 20,
+          padding: const EdgeInsets.only(right: 0),
+          onPressed: () async {
+            print('clicado id= $id');
+            await Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const PurchaseOrderPage()));
+          })),
     ]);
   }
 }
