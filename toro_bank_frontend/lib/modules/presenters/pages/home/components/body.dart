@@ -132,7 +132,7 @@ class _BodyState extends State<Body> {
                     ),
                     TotalValueBox(
                       title: 'Seu saldo',
-                      value: getCurrency(balance), //'1.543,25',
+                      value: balance == 0.0 ? '-' : getCurrency(balance),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 10),
                       margin: const EdgeInsets.symmetric(

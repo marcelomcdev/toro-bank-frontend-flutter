@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toro_bank_frontend/constants.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/home/components/body.dart';
+import 'package:toro_bank_frontend/modules/presenters/pages/shared/drawer/app_drawer.dart';
 import 'package:toro_bank_frontend/size_config.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,6 +16,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      drawer: const AppDrawer(),
       appBar: AppBar(
         backgroundColor: kToroHeaderColor,
         title: const Text(
@@ -23,6 +25,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: const Body(),
+      //bottomNavigationBar: const CustomBottomNavigationBar(),
     );
   }
 }

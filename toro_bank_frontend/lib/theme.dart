@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:toro_bank_frontend/constants.dart';
 
 ThemeData theme() {
@@ -37,14 +38,17 @@ TextTheme textTheme() {
   );
 }
 
+
 AppBarTheme appBarTheme() {
   return const AppBarTheme(
     color: Colors.green,
     elevation: 0,
-    brightness: Brightness.light,
-    iconTheme: IconThemeData(color: Colors.black),
+    //brightness: Brightness.light,
+    systemOverlayStyle: SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
+    iconTheme: IconThemeData(color: Colors.white),
     textTheme: TextTheme(
       headline6: TextStyle(color: Color(0XFF8B8B8B), fontSize: 18),
     ),
   );
 }
+
