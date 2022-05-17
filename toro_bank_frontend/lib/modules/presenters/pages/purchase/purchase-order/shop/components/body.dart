@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_session/flutter_session.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toro_bank_frontend/modules/domain/entities/trend.dart';
 import 'package:toro_bank_frontend/modules/domain/entities/user.dart';
 import 'package:toro_bank_frontend/modules/presenters/datasources/user_response_datasource.dart';
@@ -20,6 +20,7 @@ class _BodyState extends State<Body> {
   double actualBalance = 0.0;
   var datasource = UserResponseDataSource(Dio());
   late User user = User(0, '', 0, '', 0.0);
+  late SharedPreferences prefs;
 
   @override
   void initState() {
@@ -27,7 +28,10 @@ class _BodyState extends State<Body> {
     debugPrint('Compra - estado iniciado');
 
     Future.delayed(const Duration(seconds: 0), () async {
-      var id = await FlutterSession().get("userId");
+      prefs = await SharedPreferences.getInstance();
+      var id = prefs.getInt("userId");
+
+      //var id = await FlutterSession().get("userId");
       debugPrint('usuario: $id');
       await datasource.getUser(id).then((value) => {
             user = value,

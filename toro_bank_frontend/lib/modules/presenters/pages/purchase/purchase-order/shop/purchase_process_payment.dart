@@ -1,7 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:toro_bank_frontend/constants.dart';
+import 'package:toro_bank_frontend/modules/presenters/datasources/order_response_datasource.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/purchase/purchase-order/shop/purchase_success.dart';
 
 class PurchaseProcessPayment extends StatefulWidget {
@@ -21,14 +23,30 @@ class PurchaseProcessPayment extends StatefulWidget {
 }
 
 class _PurchaseProcessPaymentState extends State<PurchaseProcessPayment> {
+  int response = 0;
+  int userId = 0;
+  int amount = 0;
+  String symbol = '';
+  var datasource = OrderResponseDataSource(Dio());
+
   @override
   void initState() {
     super.initState();
 
-    Future.delayed(const Duration(seconds: 2), () {
-      //Processa pagamento
+    userId = widget.userId;
+    amount = widget.amount;
+    symbol = widget.symbol;
 
-      //no final, encaminha para a pagina de sucesso
+    Future.delayed(const Duration(seconds: 2), () async {
+      debugPrint('Processando pagamento...');
+      debugPrint('Dados enviados: $userId, $symbol, $amount');
+
+      await datasource.submitOrder(userId, symbol, amount).then((value) => {
+            response = value,
+          });
+
+      debugPrint('Finalizou processamento...');
+      debugPrint('Enviando para pagina de conclusão');
 
       Navigator.of(context).push(
         PageTransition(
@@ -41,6 +59,11 @@ class _PurchaseProcessPaymentState extends State<PurchaseProcessPayment> {
 
   @override
   Widget build(BuildContext context) {
+    response = 0;
+    userId = widget.userId;
+    amount = widget.amount;
+    symbol = widget.symbol;
+
     return Container(
       padding: const EdgeInsets.all(10.0),
       color: kToroTextColor,
@@ -52,8 +75,6 @@ class _PurchaseProcessPaymentState extends State<PurchaseProcessPayment> {
           width: 200,
           height: 200,
           child: Center(
-            // child: Lottie.network(
-            //     'https://assets6.lottiefiles.com/datafiles/o32OV1wYkYc7mZD/data.json'),
             child: Lottie.asset('assets/json/card-payment-in-process.json'),
           ),
         ),

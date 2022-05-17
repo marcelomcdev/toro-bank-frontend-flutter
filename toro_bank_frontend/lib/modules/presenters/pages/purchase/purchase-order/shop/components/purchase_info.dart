@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:toro_bank_frontend/modules/domain/entities/user.dart';
@@ -46,8 +48,8 @@ class _PurchaseInfoState extends State<PurchaseInfo> {
     void initState() {
       super.initState();
 
-      print('inicializa ordem');
-      print(widget.image);
+      debugPrint('inicializa ordem');
+      debugPrint(widget.image);
 
       _amount = 0;
       _total = 0;
@@ -187,19 +189,6 @@ class _PurchaseInfoState extends State<PurchaseInfo> {
         DefaultButtom(
           text: 'CONFIRMAR',
           pressed: () {
-            if (!(_showValidator || _disableButton)) {
-              //compra é válida.
-              //debitar o saldo
-              //adicionar novos ativos ao cliente atual.
-              //fazer isso na tela de processamento
-            }
-
-            // Navigator.pushReplacement(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (BuildContext context) =>
-            //             const PurchaseSuccessPage()));
-
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(

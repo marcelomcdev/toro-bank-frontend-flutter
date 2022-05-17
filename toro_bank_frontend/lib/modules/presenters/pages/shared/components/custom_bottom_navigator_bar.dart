@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element, import_of_legacy_library_into_null_safe
+
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:toro_bank_frontend/constants.dart';

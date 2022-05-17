@@ -1,10 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_session/flutter_session.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toro_bank_frontend/modules/domain/entities/user.dart';
 import 'package:toro_bank_frontend/modules/domain/entities/user_asset.dart';
 import 'package:toro_bank_frontend/modules/presenters/datasources/user_response_datasource.dart';
-import 'package:toro_bank_frontend/modules/presenters/helpers/format_helper.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/home/components/account_info.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/home/components/patrimony_info.dart';
 import 'package:toro_bank_frontend/size_config.dart';
@@ -24,35 +23,27 @@ class _BodyState extends State<Body> {
   final _headerColumnNames = ['', 'Ativo', 'Qte', 'Valor'];
   List<UserAsset> _userAssets = [];
 
+  late final SharedPreferences prefs;
+
   getUser() async {
     await datasource.getUser(1).then((value) => {
           user = value,
         });
   }
 
-  String getCurrency(double value) {
-    return FormatHelper().getCurrency(value);
-    // NumberFormat formatter = NumberFormat.simpleCurrency(locale: 'pt_BR');
-    // return formatter.format(value);
-  }
-
   @override
   void initState() {
     super.initState();
-    print('state iniciado');
+    debugPrint('state iniciado');
     Future.delayed(const Duration(seconds: 0), () async {
       await getUser();
       setState(() {
         balance = user.balance;
       });
-      await FlutterSession().set("userId", user.id);
+      prefs = await SharedPreferences.getInstance();
+      await prefs.setInt("userId", user.id);
+      //await FlutterSession().set("userId", user.id);
     });
-
-    // FutureBuilder(
-    //   future: await FlutterSession().get('userId'),
-    //   builder: (context, snapshot) => {
-    //   return Text(snapshot.hasData ? snapshot.data : 'Loading');
-    // })
 
     _userAssets = [
       UserAsset(1, "CMG4", 50, 120.44, "cemig.png"),
@@ -68,11 +59,11 @@ class _BodyState extends State<Body> {
   @override
   void setState(VoidCallback fn) {
     super.setState(fn);
-    print('refresh state');
+    debugPrint('refresh state');
   }
 
   Future<void> _pullRefresh() async {
-    print('pulled...');
+    debugPrint('pulled...');
     Future.delayed(const Duration(seconds: 0), () async {
       await getUser();
       setState(() {
@@ -83,7 +74,6 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return RefreshIndicator(
       backgroundColor: Colors.white,
       onRefresh: () => _pullRefresh(),
@@ -104,140 +94,4 @@ class _BodyState extends State<Body> {
       ),
     );
   }
-  // @override
-  // Widget build(BuildContext context) {
-  //   return SafeArea(
-  //     child: RefreshIndicator(
-  //       backgroundColor: Colors.white,
-  //       onRefresh: () => _pullRefresh(),
-  //       child: SizedBox(
-  //         width: double.infinity,
-  //         child: Padding(
-  //           padding: EdgeInsets.symmetric(
-  //               horizontal: getProportionateScreenWidth(0)),
-  //           child: ListView(
-  //             children: [
-  //               Container(
-  //                 width: getProportionateScreenWidth(500),
-  //                 height: getProportionateScreenHeight(180),
-  //                 // decoration: const BoxDecoration(
-  //                 //   image: DecorationImage(
-  //                 //     image: AssetImage("assets/images/fundo-futuristic.jpg"),
-  //                 //     fit: BoxFit.cover,
-  //                 //   ),
-  //                 // ),
-  //                 padding: const EdgeInsets.only(top: 40),
-  //                 child: Column(children: const [
-  //                   Text(
-  //                     'Seu patrimônio',
-  //                     style: TextStyle(
-  //                       color: Colors.white,
-  //                       fontFamily: 'Muli',
-  //                       fontSize: 16,
-  //                       fontWeight: FontWeight.bold,
-  //                     ),
-  //                     textAlign: TextAlign.center,
-  //                   ),
-  //                   Text(
-  //                     'R\$ 17.199,04',
-  //                     style: TextStyle(
-  //                       color: Colors.white,
-  //                       fontFamily: 'Muli',
-  //                       fontSize: 24,
-  //                       fontWeight: FontWeight.bold,
-  //                     ),
-  //                     textAlign: TextAlign.center,
-  //                   ),
-  //                 ]),
-  //               ),
-  //               Row(
-  //                 mainAxisAlignment: MainAxisAlignment.center,
-  //                 children: [
-  //                   const TotalValueBox(
-  //                     title: 'Seus ativos',
-  //                     value: 'R\$ 15.655,79',
-  //                     padding:
-  //                         EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-  //                     margin:
-  //                         EdgeInsets.symmetric(horizontal: 1.5, vertical: 5.0),
-  //                   ),
-  //                   TotalValueBox(
-  //                     title: 'Seu saldo',
-  //                     value: balance == 0.0 ? '-' : getCurrency(balance),
-  //                     padding: const EdgeInsets.symmetric(
-  //                         horizontal: 10, vertical: 10),
-  //                     margin: const EdgeInsets.symmetric(
-  //                         horizontal: 1.5, vertical: 5),
-  //                   ),
-  //                 ],
-  //               ),
-  //               Container(
-  //                 padding: const EdgeInsets.all(5.0),
-  //               ),
-  //               SizedBox(
-  //                 child: Padding(
-  //                   padding: const EdgeInsets.all(9.0),
-  //                   child: Row(
-  //                     mainAxisAlignment: MainAxisAlignment.start,
-  //                     children: const [
-  //                       Text(
-  //                         'Ativos que eu comprei',
-  //                         textAlign: TextAlign.end,
-  //                         style: TextStyle(
-  //                             color: Colors.black, fontWeight: FontWeight.bold),
-  //                       ),
-  //                     ],
-  //                   ),
-  //                 ),
-  //               ),
-  //               Column(
-  //                 children: [
-  //                   CustomTable(
-  //                     userAssets: _userAssets,
-  //                     headerColumnNames: _headerColumnNames,
-  //                   )
-  //                 ],
-  //               )
-  //             ],
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
-
-  // List<DataColumn> _buildTableHeader(List<String> items) {
-  //   List<DataColumn> listReturn = List.generate(
-  //       items.length,
-  //       (index) => DataColumn(
-  //             label: Text(items[index]),
-  //           ));
-  //   return listReturn;
-  // }
-
-  // DataRow _buildDataRow(
-  //     String imageName, String text, int quantity, double value,
-  //     {bool highlightName = false}) {
-  //   return DataRow(cells: [
-  //     DataCell(
-  //       CircleAvatar(
-  //         radius: 15,
-  //         backgroundImage: imageName.contains('/')
-  //             ? AssetImage(imageName)
-  //             : AssetImage('assets/images/$imageName'),
-  //       ),
-  //     ),
-  //     DataCell(
-  //       Text(
-  //         text,
-  //         style: TextStyle(
-  //             fontWeight: highlightName ? FontWeight.bold : FontWeight.normal,
-  //             color: Colors.black,
-  //             fontSize: 15),
-  //       ),
-  //     ),
-  //     DataCell(Text(quantity.toString())),
-  //     DataCell(Text(getCurrency(value))),
-  //   ]);
-  // }
 }
