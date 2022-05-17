@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="82d2f015-b501-42e1-a1de-b07a3aebafc0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/domain/errors/errors.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/domain/errors/errors.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/domain/usecases/user/get_by_cpf.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/domain/usecases/user/get_by_cpf.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/datasources/trend_response_datasource.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/datasources/trend_response_datasource.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/datasources/user_response_datasource.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/datasources/user_response_datasource.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/pages/home/components/body.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/pages/home/components/body.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/pages/purchase/purchase-order/shop/components/purchase_info.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/pages/purchase/purchase-order/shop/components/purchase_info.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/pages/purchase/purchase-order/shop/purchase_process_payment.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/pages/purchase/purchase-order/shop/purchase_process_payment.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/pages/shared/components/custom_bottom_navigator_bar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/pages/shared/components/custom_bottom_navigator_bar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/test/modules/app_module_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/test/modules/app_module_test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/test/modules/domain/users/mocks/asset_repository_mock.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/test/modules/domain/users/mocks/asset_repository_mock.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/test/modules/domain/users/mocks/user_repository_mock.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/test/modules/domain/users/mocks/user_repository_mock.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/test/modules/domain/users/usecases/get_by_id_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/test/modules/domain/users/usecases/get_by_id_test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/test/modules/infrastructure/users/mocks/user_data_source_mock.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/test/modules/infrastructure/users/mocks/user_data_source_mock.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/test/modules/infrastructure/users/usecases/user_repository_imp_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/test/modules/infrastructure/users/usecases/user_repository_imp_test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/test/modules/presenter/users/datasources/user_response_datasource_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/test/modules/presenter/users/datasources/user_response_datasource_test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/test/modules/presenter/users/mocks/dio_mock.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/test/modules/presenter/users/mocks/dio_mock.dart" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="29IsuIQosAwW0gXXfqUgiNPuVVT" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="additionalArgs" value="--no-sound-null-safety" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="FlutterTestConfigType" factoryName="Flutter Test">
+      <option name="testFile" value="" />
+      <option name="additionalArgs" value="--no-sound-null-safety" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="82d2f015-b501-42e1-a1de-b07a3aebafc0" name="Default Changelist" comment="" />
+      <created>1652812154147</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1652812154147</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2061" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1652812254945">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state x="2061" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1652812254945" />
+  </component>
+</project>
