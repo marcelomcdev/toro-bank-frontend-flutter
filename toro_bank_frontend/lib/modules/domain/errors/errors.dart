@@ -32,3 +32,14 @@ class TrendDataSourceError implements TrendException {
   final String message;
   TrendDataSourceError(this.message);
 }
+
+abstract class OrderException implements Exception {}
+
+class InvalidOrderTextError implements OrderException {}
+
+class InvalidOrderIdentifierError implements OrderException {}
+
+class OrderDataSourceError implements OrderException {
+  final String message;
+  OrderDataSourceError(this.message);
+}
