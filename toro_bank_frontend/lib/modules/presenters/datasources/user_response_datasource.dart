@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:toro_bank_frontend/constants.dart';
 import 'package:toro_bank_frontend/modules/domain/errors/errors.dart';
 import 'package:toro_bank_frontend/modules/infrastructure/datasources/user_datasource.dart';
 import 'package:toro_bank_frontend/modules/infrastructure/models/result_user_model.dart';
@@ -22,14 +23,11 @@ class UserResponseDataSource implements UserDataSource {
     return (response != nullValue && response.statusCode == 200);
   }
 
-  var kUrlBase = '';
-  var uri = Uri(path: 'http://10.0.2.2:5025/user');
-
   @override
   Future<ResultUserModel> getUser(int id) async {
     var body = jsonEncode({"id": id});
 
-    final response = await dio.post('http://10.0.2.2:5025/user', data: body);
+    final response = await dio.post('$kBaseUrl/user', data: body);
 
     if (await IsValidResponse(response)) {
       var user = ResultUserModel.fromMap(response.data);
@@ -42,15 +40,10 @@ class UserResponseDataSource implements UserDataSource {
   @override
   Future<ResultUserModel> getUserByCpf(String cpf) async {
     var body = jsonEncode({"cpf": cpf});
-    final response = await dio.post('https://localhost:7025/user/', data: body);
+    final response = await dio.post('$kBaseUrl/user/', data: body);
     if (await IsValidResponse(response)) {
       var user = ResultUserModel.fromMap(response.data);
       return user;
-      // final list = (response.data as List)
-      //     .map((e) => ResultUserModel.fromMap(e))
-      //     .toList();
-      // var firstItem = list.where((element) => element.cpf == cpf).first;
-      // return firstItem;
     } else {
       throw DataSourceError("$genericError por cpf!");
     }
@@ -58,7 +51,7 @@ class UserResponseDataSource implements UserDataSource {
 
   @override
   Future<List<ResultUserModel>> getList(String cpf) async {
-    final response = await dio.get('https://localhost:7025/user'.normalize());
+    final response = await dio.get('$kBaseUrl/user'.normalize());
     if (await IsValidResponse(response)) {
       final list = (response.data as List)
           .map((e) => ResultUserModel.fromMap(e))
