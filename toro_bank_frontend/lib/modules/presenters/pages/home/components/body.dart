@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_session/flutter_session.dart';
 import 'package:toro_bank_frontend/modules/domain/entities/user.dart';
 import 'package:toro_bank_frontend/modules/domain/entities/user_asset.dart';
 import 'package:toro_bank_frontend/modules/presenters/datasources/user_response_datasource.dart';
@@ -44,7 +45,14 @@ class _BodyState extends State<Body> {
       setState(() {
         balance = user.balance;
       });
+      await FlutterSession().set("userId", user.id);
     });
+
+    // FutureBuilder(
+    //   future: await FlutterSession().get('userId'),
+    //   builder: (context, snapshot) => {
+    //   return Text(snapshot.hasData ? snapshot.data : 'Loading');
+    // })
 
     _userAssets = [
       UserAsset(1, "CMG4", 50, 120.44, "cemig.png"),
