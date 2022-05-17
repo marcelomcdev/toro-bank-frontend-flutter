@@ -24,3 +24,5 @@ final headingStyle = TextStyle(
   color: Colors.black,
   height: 1.5,
 );
+
+const kBaseUrl = 'http://10.0.2.2:5025';
