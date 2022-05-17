@@ -4,7 +4,7 @@ import '../../entities/user.dart';
 import '../../errors/errors.dart';
 
 abstract class GetById {
-  Future<Either<UserException, User>> call(int id);
+  Future<Either<UserException, User?>> call(int id);
 }
 
 class GetByIdImpl implements GetById {
@@ -12,7 +12,7 @@ class GetByIdImpl implements GetById {
   GetByIdImpl(this.repository);
 
   @override
-  Future<Either<UserException, User>> call(int id) async {
+  Future<Either<UserException, User?>> call(int id) async {
     if (id == 0) {
       return Left(InvalidIdentifierError());
     }

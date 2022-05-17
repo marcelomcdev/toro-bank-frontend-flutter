@@ -1,3 +1,5 @@
+// ignore_for_file: override_on_non_overriding_member, prefer_typing_uninitialized_variables
+
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
