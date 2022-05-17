@@ -33,6 +33,8 @@ dependencies:
   dio:
   flutter_modular: ^2.0.0
   intl:
+  page_transition:
+  lottie:
   flutter:
     sdk: flutter
 
@@ -68,6 +70,7 @@ flutter:
     - assets/fonts/
     - assets/icons/
     - assets/images/
+    - assets/json/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
