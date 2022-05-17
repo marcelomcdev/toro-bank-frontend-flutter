@@ -35,6 +35,7 @@ dependencies:
   intl:
   page_transition:
   lottie:
+  flutter_session:
   flutter:
     sdk: flutter
 
