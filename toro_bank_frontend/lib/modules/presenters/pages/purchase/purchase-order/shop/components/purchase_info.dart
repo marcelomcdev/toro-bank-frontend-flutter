@@ -10,12 +10,14 @@ class PurchaseInfo extends StatefulWidget {
   final String assetName;
   final double value;
   final double actualBalance;
+  final String image;
 
   PurchaseInfo({
     Key? key,
     required this.assetName,
     required this.value,
     required this.actualBalance,
+    required this.image,
   }) : super(key: key);
 
   double total = 0;
@@ -34,10 +36,15 @@ class _PurchaseInfoState extends State<PurchaseInfo> {
   Widget build(BuildContext context) {
     var assetName = widget.assetName;
     var assetValue = widget.value;
+    var imageName = widget.image;
 
     @override
     void initState() {
       super.initState();
+
+      print('inicializa ordem');
+      print(widget.image);
+
       _total = 0;
       _actualBalance = widget.actualBalance;
       _showValidator = false;
@@ -69,9 +76,11 @@ class _PurchaseInfoState extends State<PurchaseInfo> {
               flex: 1,
               child: Container(
                 padding: const EdgeInsets.all(5.0),
-                child: const CircleAvatar(
+                child: CircleAvatar(
                   radius: 18,
-                  backgroundImage: AssetImage('assets/images/toro.png'),
+                  backgroundImage: imageName == ''
+                      ? null
+                      : AssetImage('assets/images/$imageName'),
                 ),
               ),
             ),
@@ -81,14 +90,16 @@ class _PurchaseInfoState extends State<PurchaseInfo> {
                 assetName,
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                textAlign: TextAlign.start,
               ),
             ),
             Expanded(
-              flex: 2,
+              flex: 4,
               child: Text(
                 FormatHelper().getCurrency(assetValue),
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                textAlign: TextAlign.end,
               ),
             ),
           ],
@@ -146,6 +157,7 @@ class _PurchaseInfoState extends State<PurchaseInfo> {
                 child: Text(
                   'Total',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  textAlign: TextAlign.start,
                 ),
               ),
               Expanded(
@@ -168,6 +180,13 @@ class _PurchaseInfoState extends State<PurchaseInfo> {
         DefaultButtom(
           text: 'CONFIRMAR',
           pressed: () {
+            if (!(_showValidator || _disableButton)) {
+              //compra é válida.
+              //debitar o saldo
+              //adicionar novos ativos ao cliente atual.
+              //fazer isso na tela de processamento
+            }
+
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(

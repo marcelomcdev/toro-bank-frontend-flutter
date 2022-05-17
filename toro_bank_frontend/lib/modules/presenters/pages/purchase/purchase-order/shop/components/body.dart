@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:toro_bank_frontend/modules/domain/entities/trend.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/purchase/purchase-order/shop/components/balance_account_info.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/purchase/purchase-order/shop/components/purchase_info.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/purchase/purchase-order/shop/components/user_info.dart';
 
 class Body extends StatefulWidget {
-  const Body({Key? key}) : super(key: key);
+  const Body({Key? key, required this.trend}) : super(key: key);
+  final Trend trend;
 
   @override
   State<Body> createState() => _BodyState();
@@ -28,9 +30,10 @@ class _BodyState extends State<Body> {
         ),
         const Divider(),
         PurchaseInfo(
-          assetName: 'CMG3',
-          value: 23.44,
+          assetName: widget.trend.symbol,
+          value: widget.trend.currentPrice,
           actualBalance: actualBalance,
+          image: widget.trend.image,
         ),
       ]),
     );

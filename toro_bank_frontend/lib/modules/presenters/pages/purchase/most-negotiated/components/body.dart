@@ -1,7 +1,9 @@
 // ignore_for_file: avoid_print
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:toro_bank_frontend/modules/domain/entities/user_asset.dart';
+import 'package:toro_bank_frontend/modules/domain/entities/trend.dart';
+import 'package:toro_bank_frontend/modules/presenters/datasources/trend_response_datasource.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/purchase/most-negotiated/components/custom_table_negotiated_assets.dart';
 import 'package:toro_bank_frontend/size_config.dart';
 
@@ -14,19 +16,26 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   final List<String> _headerColumnNames = ['', 'Ativo', 'Valor', ''];
-  List<UserAsset> _userAssets = [];
+  //List<UserAsset> _userAssets = [];
+  var datasource = TrendResponseDataSource(Dio());
+
+  List<Trend> _trends = [];
 
   @override
   void initState() {
     super.initState();
 
-    _userAssets = [
-      UserAsset(1, "CMG4", 50, 120.44, "cemig.png"),
-      UserAsset(2, "MGLU3", 11, 88.23, "magalu.png"),
-      UserAsset(3, "VAL3", 18, 74.95, "vale.png"),
-      UserAsset(4, "NATU5", 48, 60.83, "natura.png"),
-      UserAsset(5, "TORO4", 38, 115.64, "toro.png"),
-    ];
+    print('inicia state de negociados');
+    Future.delayed(const Duration(seconds: 0), () async {
+      await getTrends();
+      setState(() {});
+    });
+  }
+
+  getTrends() async {
+    await datasource.getTrends().then((value) => {
+          _trends = value,
+        });
   }
 
   @override
@@ -35,19 +44,11 @@ class _BodyState extends State<Body> {
     print('refresh state');
   }
 
-  getUser() async {
-    // await datasource.getUser(1).then((value) => {
-    //       user = value,
-    //     });
-  }
-
   Future<void> _pullRefresh() async {
     print('pulled...');
-    Future.delayed(const Duration(seconds: 1), () async {
-      await getUser();
-      setState(() {
-        //balance = user.balance;
-      });
+    Future.delayed(const Duration(seconds: 0), () async {
+      await getTrends();
+      setState(() {});
     });
   }
 
@@ -74,11 +75,11 @@ class _BodyState extends State<Body> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: const [
                         Text(
-                          'Estes são os ativos mais negociados nos últimos \n7 dias e já estão disponíveis para compra.',
+                          'Estes são os ativos mais negociados nos últimos 7 dias e \njá estão disponíveis para compra.',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 12,
+                              fontSize: 13,
                               fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -92,7 +93,7 @@ class _BodyState extends State<Body> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CustomTableNegotiatedAssets(
-                          userAssets: _userAssets,
+                          userAssets: _trends,
                           headerColumnNames: _headerColumnNames,
                         )
                       ],

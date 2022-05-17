@@ -39,7 +39,7 @@ class _BodyState extends State<Body> {
   void initState() {
     super.initState();
     print('state iniciado');
-    Future.delayed(const Duration(seconds: 1), () async {
+    Future.delayed(const Duration(seconds: 0), () async {
       await getUser();
       setState(() {
         balance = user.balance;
@@ -65,7 +65,7 @@ class _BodyState extends State<Body> {
 
   Future<void> _pullRefresh() async {
     print('pulled...');
-    Future.delayed(const Duration(seconds: 1), () async {
+    Future.delayed(const Duration(seconds: 0), () async {
       await getUser();
       setState(() {
         balance = user.balance;

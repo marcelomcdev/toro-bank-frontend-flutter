@@ -2,14 +2,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:toro_bank_frontend/constants.dart';
+import 'package:toro_bank_frontend/modules/domain/entities/trend.dart';
 
-import 'package:toro_bank_frontend/modules/domain/entities/user_asset.dart';
 import 'package:toro_bank_frontend/modules/presenters/helpers/format_helper.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/purchase/purchase-order/shop/purchase_order.dart';
 
+// ignore: must_be_immutable
 class CustomTableNegotiatedAssets extends StatelessWidget {
   final List<String> headerColumnNames;
-  final List<UserAsset> userAssets;
+  final List<Trend> userAssets;
 
   const CustomTableNegotiatedAssets(
       {Key? key, required this.userAssets, required this.headerColumnNames})
@@ -26,7 +27,7 @@ class CustomTableNegotiatedAssets extends StatelessWidget {
             columns: _buildTableHeader(headerColumnNames).toList(),
             rows: userAssets
                 .map((e) => _buildDataRow(
-                    context, e.id, e.image, e.name, e.value,
+                    context, e.id, e.image, e.symbol, e.currentPrice,
                     highlightName: true))
                 .toList(),
           ),
@@ -64,18 +65,31 @@ class CustomTableNegotiatedAssets extends StatelessWidget {
       ),
       //DataCell(Text(quantity.toString())),
       DataCell(Text(FormatHelper().getCurrency(value))),
-      DataCell(IconButton(
-          icon: const Icon(Icons.add_sharp),
-          color: kToroTextColor,
-          iconSize: 20,
-          padding: const EdgeInsets.only(right: 0),
-          onPressed: () async {
-            print('clicado id= $id');
-            await Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const PurchaseOrderPage()));
-          })),
+      DataCell(Padding(
+        padding: const EdgeInsets.only(right: 10.0),
+        child: IconButton(
+            icon: const Icon(Icons.add_circle_outlined),
+            color: kToroHeaderColor,
+            iconSize: 20,
+            padding: const EdgeInsets.only(right: 0),
+            onPressed: () async {
+              print('clicado id= $id');
+              var selectedTrend =
+                  userAssets.where((element) => element.id == id).first;
+              print({
+                selectedTrend.id,
+                selectedTrend.currentPrice,
+                selectedTrend.symbol,
+                selectedTrend.image
+              });
+              await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => PurchaseOrderPage(
+                            trend: selectedTrend,
+                          )));
+            }),
+      )),
     ]);
   }
 }
