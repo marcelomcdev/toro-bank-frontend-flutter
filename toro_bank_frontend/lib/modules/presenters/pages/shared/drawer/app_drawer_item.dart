@@ -8,14 +8,14 @@ Widget AppDrawerItem(
     title: Row(children: <Widget>[
       Icon(
         icon,
-        color: kToroTextColor,
+        color: kToroHeaderColor,
       ),
       Padding(
         padding: const EdgeInsets.only(left: 8.0),
         child: Text(
           text!,
           style: const TextStyle(
-            color: kToroTextColor,
+            color: kToroHeaderColor,
             fontSize: 16,
             fontWeight: FontWeight.normal,
           ),

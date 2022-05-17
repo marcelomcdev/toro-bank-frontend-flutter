@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:toro_bank_frontend/size_config.dart';
 
-const kPrimaryColor = Color(0xFF4D1892);
+//colors of toro app
+//const kToroTextColor = Color(0xFF4D1892);
+const kToroBlackColor = Color.fromARGB(255, 32, 32, 32);
+const kToroHeaderColor = Color(0xDF05103B);
+const kToroTextColor = kToroHeaderColor;
+
+const kPrimaryColor = kToroHeaderColor;
 const kPrimaryLightColor = Color(0xFFFFECDF);
 const kPrimaryGradientColor = LinearGradient(
   begin: Alignment.topLeft,
@@ -10,11 +16,6 @@ const kPrimaryGradientColor = LinearGradient(
 );
 const kSecondaryColor = Color(0xFF979797);
 const kTextColor = Color(0xFF757575);
-
-//colors of toro app
-const kToroTextColor = Color(0xFF4D1892);
-const kToroBlackColor = Color.fromARGB(255, 32, 32, 32);
-const kToroHeaderColor = Color(0xDF05103B);
 
 const kAnimationDuration = Duration(milliseconds: 200);
 
