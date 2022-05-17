@@ -5,11 +5,13 @@ import 'package:flutter/src/widgets/framework.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:toro_bank_frontend/app_widget.dart';
+import 'package:toro_bank_frontend/modules/domain/entities/trend.dart';
 import 'package:toro_bank_frontend/modules/domain/usecases/user/get_by_id.dart';
 import 'package:toro_bank_frontend/modules/infrastructure/repositories/user_repository_impl.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/home/home_page.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/purchase/most-negotiated/most_negotiated_page.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/purchase/purchase-order/shop/purchase_order.dart';
+import 'package:toro_bank_frontend/modules/presenters/pages/purchase/purchase-order/shop/purchase_success.dart';
 
 import 'modules/domain/usecases/user/get_by_cpf.dart';
 import 'modules/presenters/datasources/user_response_datasource.dart';
@@ -33,8 +35,10 @@ class AppModule extends MainModule {
         ModularRouter('/mostnegotiated',
             child: (_, __) => const MostNegotiatedAssetPage()),
         ModularRouter('/purchaseorder',
-            child: (_, __) => const PurchaseOrderPage()),
+            child: (_, __) => PurchaseOrderPage(
+                  trend: Trend(0, '', 0.0, ''),
+                )),
         ModularRouter('/purchaseSuccess',
-            child: (_, __) => const PurchaseOrderPage()),
+            child: (_, __) => const PurchaseSuccessPage()),
       ];
 }
