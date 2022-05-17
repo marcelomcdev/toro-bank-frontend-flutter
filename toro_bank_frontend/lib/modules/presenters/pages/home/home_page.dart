@@ -16,9 +16,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      backgroundColor: kToroHeaderColor,
       drawer: const AppDrawer(),
       appBar: AppBar(
-        backgroundColor: kToroHeaderColor,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         title: const Text(
           'Resumo do Patrimônio',
           style: TextStyle(fontSize: 16),
