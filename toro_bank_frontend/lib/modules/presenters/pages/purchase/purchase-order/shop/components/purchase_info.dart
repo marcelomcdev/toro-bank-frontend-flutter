@@ -130,13 +130,11 @@ class _PurchaseInfoState extends State<PurchaseInfo> {
                 keyboardType: TextInputType.number,
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 onChanged: (String? value) {
-                  //roda quando muda o valor
                   debugPrint(value);
                   debugPrint('Total no inicio: $_total');
                   debugPrint('---------COMPRANDO------------');
                   debugPrint('Saldo antes da compra: ' +
                       widget.actualBalance.toString());
-                  //debugPrint(widget.actualBalance.toString());
 
                   setState(() {
                     _total = (double.parse(fixValueIfNull(value)) * assetValue);
