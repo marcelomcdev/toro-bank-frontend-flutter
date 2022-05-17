@@ -9,7 +9,7 @@ class PurchaseValidator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(0),
-      padding: const EdgeInsets.all(13.0),
+      padding: const EdgeInsets.all(7.0),
       decoration: const BoxDecoration(color: Colors.white),
       child: Column(children: [
         Row(

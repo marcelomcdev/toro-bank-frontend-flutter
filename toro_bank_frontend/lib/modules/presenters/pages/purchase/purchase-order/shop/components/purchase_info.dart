@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:toro_bank_frontend/modules/presenters/helpers/format_helper.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/purchase/purchase-order/shop/components/purchase_validator.dart';
+import 'package:toro_bank_frontend/modules/presenters/pages/purchase/purchase-order/shop/purchase_success.dart';
+import 'package:toro_bank_frontend/modules/presenters/pages/shared/components/default_button.dart';
 
 // ignore: must_be_immutable
 class PurchaseInfo extends StatefulWidget {
@@ -26,6 +28,7 @@ class _PurchaseInfoState extends State<PurchaseInfo> {
   double _total = 0;
   double _actualBalance = 0;
   bool _showValidator = false;
+  bool _disableButton = true;
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +41,10 @@ class _PurchaseInfoState extends State<PurchaseInfo> {
       _total = 0;
       _actualBalance = widget.actualBalance;
       _showValidator = false;
+      _disableButton = true;
     }
 
     setState(() {});
-
-    double getTotal() {
-      return _total;
-    }
 
     return Container(
       margin: const EdgeInsets.all(0),
@@ -128,6 +128,7 @@ class _PurchaseInfoState extends State<PurchaseInfo> {
                   debugPrint('Total no fim: $_total');
                   debugPrint('Saldo depois da compra: $_actualBalance');
 
+                  _disableButton = (value == null || value == '');
                   _showValidator = (_actualBalance < 0);
                 },
                 style: const TextStyle(
@@ -163,7 +164,18 @@ class _PurchaseInfoState extends State<PurchaseInfo> {
             ],
           ),
         ),
-        if (_showValidator) const PurchaseValidator() else Container()
+        if (_showValidator) const PurchaseValidator() else Container(),
+        DefaultButtom(
+          text: 'CONFIRMAR',
+          pressed: () {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        const PurchaseSuccessPage()));
+          },
+          disabled: _showValidator || _disableButton,
+        ),
       ]),
     );
   }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/purchase/purchase-order/shop/components/balance_account_info.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/purchase/purchase-order/shop/components/purchase_info.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/purchase/purchase-order/shop/components/user_info.dart';
-import 'package:toro_bank_frontend/modules/presenters/pages/shared/components/default_button.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -32,11 +31,6 @@ class _BodyState extends State<Body> {
           assetName: 'CMG3',
           value: 23.44,
           actualBalance: actualBalance,
-        ),
-        const Divider(),
-        DefaultButtom(
-          text: 'CONFIRMAR',
-          pressed: () {},
         ),
       ]),
     );
