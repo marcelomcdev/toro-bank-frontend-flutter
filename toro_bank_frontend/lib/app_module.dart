@@ -34,5 +34,7 @@ class AppModule extends MainModule {
             child: (_, __) => const MostNegotiatedAssetPage()),
         ModularRouter('/purchaseorder',
             child: (_, __) => const PurchaseOrderPage()),
+        ModularRouter('/purchaseSuccess',
+            child: (_, __) => const PurchaseOrderPage()),
       ];
 }
