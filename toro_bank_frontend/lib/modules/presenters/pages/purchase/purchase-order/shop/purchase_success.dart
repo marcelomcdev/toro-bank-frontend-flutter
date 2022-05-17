@@ -41,7 +41,7 @@ class _PurchaseSuccessPageState extends State<PurchaseSuccessPage> {
           child: Center(
             // child: Lottie.network(
             //     'https://assets6.lottiefiles.com/datafiles/o32OV1wYkYc7mZD/data.json'),
-            child: Lottie.asset('assets/json/3409-done.json'),
+            child: Lottie.asset('assets/json/done.json'),
           ),
         ),
       ]),

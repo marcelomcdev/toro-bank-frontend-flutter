@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:toro_bank_frontend/modules/domain/entities/user.dart';
 import 'package:toro_bank_frontend/modules/presenters/helpers/format_helper.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/purchase/purchase-order/shop/components/purchase_validator.dart';
-import 'package:toro_bank_frontend/modules/presenters/pages/purchase/purchase-order/shop/purchase_success.dart';
+import 'package:toro_bank_frontend/modules/presenters/pages/purchase/purchase-order/shop/purchase_process_payment.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/shared/components/default_button.dart';
 
 // ignore: must_be_immutable
@@ -11,6 +12,7 @@ class PurchaseInfo extends StatefulWidget {
   final double value;
   final double actualBalance;
   final String image;
+  final User user;
 
   PurchaseInfo({
     Key? key,
@@ -18,6 +20,7 @@ class PurchaseInfo extends StatefulWidget {
     required this.value,
     required this.actualBalance,
     required this.image,
+    required this.user,
   }) : super(key: key);
 
   double total = 0;
@@ -31,6 +34,7 @@ class _PurchaseInfoState extends State<PurchaseInfo> {
   double _actualBalance = 0;
   bool _showValidator = false;
   bool _disableButton = true;
+  int _amount = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +49,15 @@ class _PurchaseInfoState extends State<PurchaseInfo> {
       print('inicializa ordem');
       print(widget.image);
 
+      _amount = 0;
       _total = 0;
       _actualBalance = widget.actualBalance;
       _showValidator = false;
       _disableButton = true;
+    }
+
+    String fixValueIfNull(String? value) {
+      return (value == '' ? '0' : value.toString());
     }
 
     setState(() {});
@@ -128,11 +137,9 @@ class _PurchaseInfoState extends State<PurchaseInfo> {
                   //debugPrint(widget.actualBalance.toString());
 
                   setState(() {
-                    _total = (double.parse(value == null || value == ''
-                            ? '0'
-                            : value.toString()) *
-                        assetValue);
+                    _total = (double.parse(fixValueIfNull(value)) * assetValue);
                     _actualBalance = widget.actualBalance - _total;
+                    _amount = int.parse(fixValueIfNull(value));
                   });
 
                   debugPrint('---------FINALIZANDO------------');
@@ -187,11 +194,19 @@ class _PurchaseInfoState extends State<PurchaseInfo> {
               //fazer isso na tela de processamento
             }
 
+            // Navigator.pushReplacement(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (BuildContext context) =>
+            //             const PurchaseSuccessPage()));
+
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        const PurchaseSuccessPage()));
+                    builder: (BuildContext context) => PurchaseProcessPayment(
+                        userId: widget.user.id,
+                        amount: _amount,
+                        symbol: assetName)));
           },
           disabled: _showValidator || _disableButton,
         ),

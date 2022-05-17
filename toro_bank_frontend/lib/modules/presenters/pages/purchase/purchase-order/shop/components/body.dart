@@ -38,18 +38,12 @@ class _BodyState extends State<Body> {
     });
   }
 
-  // getUser(int id) async {
-  //   await datasource.getUser(id).then((value) => {
-  //         user = value,
-  //       });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(children: [
         UserInfo(
-            name: user.name, //'Jorge Santana dos Santos',
+            name: user.name,
             bank: 'Banco: 352',
             account: 'Conta: ' + user.accountNumber.toString(),
             assetProfileImage: 'assets/images/Profile Image.png'),
@@ -63,6 +57,7 @@ class _BodyState extends State<Body> {
           value: widget.trend.currentPrice,
           actualBalance: actualBalance,
           image: widget.trend.image,
+          user: user,
         ),
       ]),
     );
