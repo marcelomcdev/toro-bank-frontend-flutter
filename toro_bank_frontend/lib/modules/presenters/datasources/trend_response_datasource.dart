@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:toro_bank_frontend/constants.dart';
 import 'package:toro_bank_frontend/modules/domain/errors/errors.dart';
@@ -23,8 +21,7 @@ class TrendResponseDataSource implements TrendDataSource {
 
   @override
   Future<List<ResultTrendModel>> getTrends() async {
-    var body = jsonEncode({"pageNumber": 1, "pageSize": 5});
-    final response = await dio.post('$kBaseUrl/trends', data: body);
+    final response = await dio.get('$kBaseUrl/trends');
     if (await IsValidResponse(response)) {
       final list = (response.data as List)
           .map((e) => ResultTrendModel.fromMap(e))
