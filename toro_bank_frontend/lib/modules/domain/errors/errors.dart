@@ -43,3 +43,14 @@ class OrderDataSourceError implements OrderException {
   final String message;
   OrderDataSourceError(this.message);
 }
+
+abstract class UserPositionException implements Exception {}
+
+class InvalidUserPositionTextError implements UserPositionException {}
+
+class InvalidUserPositionIdentifierError implements UserPositionException {}
+
+class UserPositionDataSourceError implements UserPositionException {
+  final String message;
+  UserPositionDataSourceError(this.message);
+}
