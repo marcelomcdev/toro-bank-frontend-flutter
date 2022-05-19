@@ -30,4 +30,14 @@ main() {
     final result = await useCase(_userId, symbol, amount);
     expect(result.fold((l) => l, (r) => r), isA<InvalidOrderIdentifierError>());
   });
+
+  test(
+      'should return an InvalidOrderIdentifierError error when symbol is empty',
+      () async {
+    var _symbol = '';
+    when(() => repository.submitOrder(userId, symbol, amount))
+        .thenAnswer((_) async => const Right(response));
+    final result = await useCase(userId, _symbol, amount);
+    expect(result.fold((l) => l, (r) => r), isA<InvalidOrderIdentifierError>());
+  });
 }
