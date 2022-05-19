@@ -39,6 +39,8 @@ class InvalidOrderTextError implements OrderException {}
 
 class InvalidOrderIdentifierError implements OrderException {}
 
+class InvalidOrderAmountError implements OrderException {}
+
 class OrderDataSourceError implements OrderException {
   final String message;
   OrderDataSourceError(this.message);
