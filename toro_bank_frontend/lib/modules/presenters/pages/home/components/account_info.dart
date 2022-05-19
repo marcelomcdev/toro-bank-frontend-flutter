@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:toro_bank_frontend/modules/domain/entities/user_asset.dart';
+import 'package:toro_bank_frontend/modules/domain/entities/positions.dart';
 import 'package:toro_bank_frontend/modules/presenters/helpers/format_helper.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/home/components/custom_table.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/home/components/total_value_box.dart';
 
 class AccountInfo extends StatelessWidget {
   final double balance;
+  final double investiments;
   final List<String> headerColumnNames;
-  final List<UserAsset> userAssets;
+  final List<Positions>? userAssets;
   const AccountInfo({
     Key? key,
     required this.balance,
     required this.headerColumnNames,
     required this.userAssets,
+    required this.investiments,
   }) : super(key: key);
 
   @override
@@ -30,11 +32,14 @@ class AccountInfo extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const TotalValueBox(
+            TotalValueBox(
               title: 'Seus ativos',
-              value: 'R\$ 15.655,79',
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              margin: EdgeInsets.symmetric(horizontal: 1.5, vertical: 5.0),
+              value: investiments == 0.0
+                  ? '-'
+                  : FormatHelper().getCurrency(investiments),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              margin:
+                  const EdgeInsets.symmetric(horizontal: 1.5, vertical: 5.0),
             ),
             TotalValueBox(
               title: 'Seu saldo',

@@ -2,24 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82d2f015-b501-42e1-a1de-b07a3aebafc0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/domain/errors/errors.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/domain/errors/errors.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/domain/usecases/user/get_by_cpf.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/domain/usecases/user/get_by_cpf.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/datasources/trend_response_datasource.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/datasources/trend_response_datasource.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/datasources/user_response_datasource.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/datasources/user_response_datasource.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/pages/home/components/body.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/pages/home/components/body.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/pages/purchase/purchase-order/shop/components/purchase_info.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/pages/purchase/purchase-order/shop/components/purchase_info.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/pages/purchase/purchase-order/shop/purchase_process_payment.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/pages/purchase/purchase-order/shop/purchase_process_payment.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/pages/shared/components/custom_bottom_navigator_bar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/pages/shared/components/custom_bottom_navigator_bar.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/test/modules/app_module_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/test/modules/app_module_test.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/test/modules/domain/users/mocks/asset_repository_mock.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/test/modules/domain/users/mocks/asset_repository_mock.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/test/modules/domain/users/mocks/user_repository_mock.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/test/modules/domain/users/mocks/user_repository_mock.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/test/modules/domain/users/usecases/get_by_id_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/test/modules/domain/users/usecases/get_by_id_test.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/test/modules/infrastructure/users/mocks/user_data_source_mock.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/test/modules/infrastructure/users/mocks/user_data_source_mock.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/test/modules/infrastructure/users/usecases/user_repository_imp_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/test/modules/infrastructure/users/usecases/user_repository_imp_test.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/test/modules/presenter/users/datasources/user_response_datasource_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/test/modules/presenter/users/datasources/user_response_datasource_test.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/test/modules/presenter/users/mocks/dio_mock.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/test/modules/presenter/users/mocks/dio_mock.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/domain/entities/position.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/domain/entities/position.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,5 +55,9 @@
       <screen x="1920" y="0" width="1920" height="1050" />
     </state>
     <state x="2061" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1652812254945" />
+    <state x="2024" y="174" width="1166" height="513" key="AVDManager" timestamp="1652880368954">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state x="2024" y="174" width="1166" height="513" key="AVDManager/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1652880368954" />
   </component>
 </project>

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:toro_bank_frontend/modules/domain/entities/positions.dart';
 
-import 'package:toro_bank_frontend/modules/domain/entities/user_asset.dart';
 import 'package:toro_bank_frontend/modules/presenters/helpers/format_helper.dart';
 
 class CustomTable extends StatelessWidget {
   final List<String> headerColumnNames;
-  final List<UserAsset> userAssets;
+  final List<Positions>? userAssets;
 
   const CustomTable(
       {Key? key, required this.userAssets, required this.headerColumnNames})
@@ -21,8 +21,9 @@ class CustomTable extends StatelessWidget {
             sortColumnIndex: 1,
             sortAscending: true,
             columns: _buildTableHeader(headerColumnNames).toList(),
-            rows: userAssets
-                .map((e) => _buildDataRow(e.image, e.name, e.quantity, e.value,
+            rows: userAssets!
+                .map((e) => _buildDataRow(
+                    e.image, e.symbol, e.amount, e.currentPrice,
                     highlightName: true))
                 .toList(),
           ),

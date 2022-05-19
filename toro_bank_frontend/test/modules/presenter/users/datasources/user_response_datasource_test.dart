@@ -45,16 +45,33 @@ main() {
 
   test('retorna um erro se o código não for 200', () async {
     var id = 0;
-    when(() => dio.get(any)).thenAnswer((_) async =>
-        Response(data: null, statusCode: 400, requestOptions: nullValue));
+    var body = jsonEncode({"id": id});
+    var url = '$kBaseUrl/user';
+    requestOptions.path = '/user';
+
+    when(() => dio.post(url, data: body)).thenAnswer((_) async => Response(
+        data: jsonDecode(singleUserResult),
+        statusCode: 400,
+        requestOptions: requestOptions));
 
     final Future<ResultUserModel> future = datasource.getUser(id);
     expect(future, throwsA(isA<DataSourceError>()));
   });
 
   test('deve retornar um erro se tiver erro no dio', () async {
-    var id = 1;
-    when(() => dio.get(any)).thenThrow(Exception());
+    var id = 0;
+    var body = jsonEncode({"id": 0});
+    // var url = '$kBaseUrl/user';
+    // requestOptions.path = '/user';
+
+    // when(() => dio.post(url, data: body)).thenThrow(Exception());
+
+    //when(() => dio.post(any, data: body)).thenThrow(Exception());
+
+    when(() => dio.post(any, data: body)).thenAnswer((_) async => Response(
+        data: jsonDecode(singleUserResult),
+        statusCode: 400,
+        requestOptions: requestOptions));
 
     final Future<ResultUserModel> future = datasource.getUser(id);
     expect(future, throwsA(isA<Exception>()));
