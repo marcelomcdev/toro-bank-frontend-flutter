@@ -12,9 +12,9 @@ main() {
   const int userId = 1;
   const String symbol = '';
   const int amount = 3;
-  const int response = 1;
+  const String response = '';
 
-  test('should return 1', () async {
+  test('should return a message', () async {
     when(() => repository.submitOrder(userId, symbol, amount))
         .thenAnswer((_) async => const Right(response));
     final result = await useCase(userId, symbol, amount);
