@@ -23,7 +23,7 @@ class PurchaseProcessPayment extends StatefulWidget {
 }
 
 class _PurchaseProcessPaymentState extends State<PurchaseProcessPayment> {
-  int response = 0;
+  String response = '';
   int userId = 0;
   int amount = 0;
   String symbol = '';
@@ -59,7 +59,7 @@ class _PurchaseProcessPaymentState extends State<PurchaseProcessPayment> {
 
   @override
   Widget build(BuildContext context) {
-    response = 0;
+    response = '';
     userId = widget.userId;
     amount = widget.amount;
     symbol = widget.symbol;

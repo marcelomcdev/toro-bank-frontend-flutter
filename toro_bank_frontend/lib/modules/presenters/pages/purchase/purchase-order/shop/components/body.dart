@@ -31,7 +31,6 @@ class _BodyState extends State<Body> {
       prefs = await SharedPreferences.getInstance();
       var id = prefs.getInt("userId");
 
-      //var id = await FlutterSession().get("userId");
       debugPrint('usuario: $id');
       await datasource.getUser(id).then((value) => {
             user = value,
