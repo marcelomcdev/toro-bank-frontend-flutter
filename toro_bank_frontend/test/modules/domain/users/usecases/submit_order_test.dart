@@ -31,13 +31,22 @@ main() {
     expect(result.fold((l) => l, (r) => r), isA<InvalidOrderIdentifierError>());
   });
 
-  test(
-      'should return an InvalidOrderIdentifierError error when symbol is empty',
+  test('should return an InvalidOrderTextError error when symbol is empty',
       () async {
     var _symbol = '';
     when(() => repository.submitOrder(userId, symbol, amount))
         .thenAnswer((_) async => const Right(response));
     final result = await useCase(userId, _symbol, amount);
-    expect(result.fold((l) => l, (r) => r), isA<InvalidOrderIdentifierError>());
+    expect(result.fold((l) => l, (r) => r), isA<InvalidOrderTextError>());
+  });
+
+  test('should return an InvalidOrderAmountError error when amount is lt zero',
+      () async {
+    var _amount = 0;
+    var symbol = 'PETR4';
+    when(() => repository.submitOrder(userId, symbol, amount))
+        .thenAnswer((_) async => const Right(response));
+    final result = await useCase(userId, symbol, _amount);
+    expect(result.fold((l) => l, (r) => r), isA<InvalidOrderAmountError>());
   });
 }
