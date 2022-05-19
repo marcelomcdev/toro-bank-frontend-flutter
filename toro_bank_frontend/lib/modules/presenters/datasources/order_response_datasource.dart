@@ -14,7 +14,7 @@ class OrderResponseDataSource implements OrderDataSource {
   var nullValue;
 
   @override
-  Future<int> submitOrder(int userId, String symbol, int amount) async {
+  Future<String> submitOrder(int userId, String symbol, int amount) async {
     var body = jsonEncode({
       "userId": userId,
       "symbol": symbol,

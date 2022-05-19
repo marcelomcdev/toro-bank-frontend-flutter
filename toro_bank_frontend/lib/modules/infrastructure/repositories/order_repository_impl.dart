@@ -9,7 +9,7 @@ class UserRepositoryImpl implements OrderRepository {
   UserRepositoryImpl(this.dataSource);
 
   @override
-  Future<Either<OrderException, int>> submitOrder(
+  Future<Either<OrderException, String>> submitOrder(
       int userId, String symbol, int amount) async {
     try {
       final result = await dataSource.submitOrder(userId, symbol, amount);
