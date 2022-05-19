@@ -42,34 +42,3 @@ class ResultUserPositionModel extends UserPosition {
     return data;
   }
 }
-
-
-
-// class ResultPositions extends Positions {
-//   @override
-//   String symbol = '';
-//   @override
-//   int amount = 0;
-//   @override
-//   double currentPrice = 0.0;
-
-//   ResultPositions(
-//       {required this.symbol, required this.amount, required this.currentPrice})
-//       : super('', 0, 0.0);
-
-
-//   ResultPositions.fromJson(Map<String, dynamic> json) {
-//     symbol = json['symbol'];
-//     amount = json['amount'];
-//     currentPrice = json['currentPrice'];
-//   }
-
-//   Map<String, dynamic> toJson() {
-//     final Map<String, dynamic> data = <String, dynamic>{};
-//     data['symbol'] = symbol;
-//     data['amount'] = amount;
-//     data['currentPrice'] = currentPrice;
-//     return data;
-//   }
-// }
-
