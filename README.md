@@ -1,7 +1,7 @@
 # Toro Bank - Frontend (Flutter)
 
 O projeto do frontend foi desenvolvido em Flutter e linguagem Dart e comunica-se com a api Toro-Bank-Backend.
-Como arquitetura, adotei o Clean Architecture para esta aplicação, com o fim de manter as funcionalidades o mais possivelmente desacopladas, a fim de torná-las testáveis.
+Como arquitetura, adotei o Clean Architecture para esta aplicação, para obter melhor separação das responsabilidades e deixar cada camada o mais desacoplada possível, a fim de tornar as classes testáveis.
 
 Para execução deste projeto, são necessárias algumas dependências, que estão declaradas no arquivo **pubspec.yaml**:
 
