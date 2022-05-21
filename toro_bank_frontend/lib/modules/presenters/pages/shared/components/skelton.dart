@@ -20,7 +20,7 @@ class Skelton extends StatelessWidget {
       margin: margin,
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-          color: color!.withOpacity(0.1),
+          color: color!.withOpacity(0.08),
           borderRadius: const BorderRadius.all(Radius.circular(15))),
     );
   }

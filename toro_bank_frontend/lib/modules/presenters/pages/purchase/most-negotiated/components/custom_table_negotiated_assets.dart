@@ -63,10 +63,9 @@ class CustomTableNegotiatedAssets extends StatelessWidget {
               fontSize: 15),
         ),
       ),
-      //DataCell(Text(quantity.toString())),
       DataCell(Text(FormatHelper().getCurrency(value))),
       DataCell(Padding(
-        padding: const EdgeInsets.only(right: 10.0),
+        padding: const EdgeInsets.only(right: 0.0),
         child: IconButton(
             icon: const Icon(Icons.add_circle_outlined),
             color: kToroHeaderColor,
