@@ -11,11 +11,11 @@ Para execução deste projeto, são necessárias algumas dependências, que est�
 
 **Dio** - Usado para requisições HTTP para comunicação com a api do Backend.
 
-**Flutter Modular**
+**Flutter Modular** - Usado para injeção de dependência nas rotas.
 
-**Page Transition** - para aplicar efeitos de transição nas páginas.
+**Page Transition** - Usado para aplicar efeitos de transição.
 
-**Lottie** - para aplicar animações em algumas telas.
+**Lottie** - Usado para aplicar animações.
 
 
 # Instalação das Dependências
