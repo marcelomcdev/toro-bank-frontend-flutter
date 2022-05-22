@@ -62,3 +62,8 @@ abstract class AuthException implements Exception {}
 class InvalidCredentialsException implements AuthException {}
 
 class InvalidTokenException implements AuthException {}
+
+class AuthDataSourceError implements AuthException {
+  final String message;
+  AuthDataSourceError(this.message);
+}
