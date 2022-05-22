@@ -56,3 +56,7 @@ class UserPositionDataSourceError implements UserPositionException {
   final String message;
   UserPositionDataSourceError(this.message);
 }
+
+abstract class AuthException implements Exception {}
+
+class InvalidCredentialsException implements AuthException {}
