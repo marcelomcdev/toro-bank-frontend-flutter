@@ -23,7 +23,7 @@ class PatrimonyInfo extends StatelessWidget {
       padding: const EdgeInsets.only(top: 40),
       child: Column(children: [
         const Text(
-          'Meu patrimônio',
+          'Olá Marcelo, seu patrimônio hoje:',
           style: TextStyle(
             color: Colors.white,
             fontFamily: 'Muli',

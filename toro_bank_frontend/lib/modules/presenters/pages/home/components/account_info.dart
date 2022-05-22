@@ -33,7 +33,7 @@ class AccountInfo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TotalValueBox(
-              title: 'Seus ativos',
+              title: 'Total investido',
               value: investiments == 0.0
                   ? '-'
                   : FormatHelper().getCurrency(investiments),
@@ -42,7 +42,7 @@ class AccountInfo extends StatelessWidget {
                   const EdgeInsets.symmetric(horizontal: 1.5, vertical: 5.0),
             ),
             TotalValueBox(
-              title: 'Seu saldo',
+              title: 'Saldo disponível',
               value: balance == 0.0 ? '-' : FormatHelper().getCurrency(balance),
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               margin: const EdgeInsets.symmetric(horizontal: 1.5, vertical: 5),
