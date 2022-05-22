@@ -60,3 +60,5 @@ class UserPositionDataSourceError implements UserPositionException {
 abstract class AuthException implements Exception {}
 
 class InvalidCredentialsException implements AuthException {}
+
+class InvalidTokenException implements AuthException {}
