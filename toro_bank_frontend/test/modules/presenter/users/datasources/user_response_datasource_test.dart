@@ -61,13 +61,6 @@ main() {
   test('deve retornar um erro se tiver erro no dio', () async {
     var id = 0;
     var body = jsonEncode({"id": 0});
-    // var url = '$kBaseUrl/user';
-    // requestOptions.path = '/user';
-
-    // when(() => dio.post(url, data: body)).thenThrow(Exception());
-
-    //when(() => dio.post(any, data: body)).thenThrow(Exception());
-
     when(() => dio.post(any, data: body)).thenAnswer((_) async => Response(
         data: jsonDecode(singleUserResult),
         statusCode: 400,

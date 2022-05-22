@@ -5,6 +5,7 @@ import 'package:toro_bank_frontend/constants.dart';
 import 'package:toro_bank_frontend/modules/domain/entities/token.dart';
 import 'package:toro_bank_frontend/modules/domain/errors/errors.dart';
 import 'package:toro_bank_frontend/modules/infrastructure/datasources/auth_user_datasource.dart';
+import 'package:toro_bank_frontend/modules/infrastructure/models/result_token_model.dart';
 
 class AuthUserResponseDataSource implements AuthUserDataSource {
   final Dio dio;
@@ -17,7 +18,7 @@ class AuthUserResponseDataSource implements AuthUserDataSource {
     var body = jsonEncode({"email": email, "password": password});
     final response = await dio.post('$kBaseUrl/auth', data: body);
     if (await IsValidResponse(response)) {
-      return response.data;
+      return ResultTokenModel.fromMap(response.data);
     } else {
       throw AuthDataSourceError(genericError);
     }

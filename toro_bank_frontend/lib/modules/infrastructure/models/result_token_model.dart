@@ -18,7 +18,8 @@ class ResultTokenModel extends Token {
   factory ResultTokenModel.fromMap(Map<String, dynamic> map) {
     return ResultTokenModel(
       map['accessToken'] ?? '',
-      DateTime.fromMillisecondsSinceEpoch(map['expires']),
+      DateTime.parse(
+          map['expires']), //.fromMillisecondsSinceEpoch(map['expires']),
     );
   }
 
