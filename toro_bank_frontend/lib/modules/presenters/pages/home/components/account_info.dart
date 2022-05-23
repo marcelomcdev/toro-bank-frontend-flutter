@@ -77,7 +77,7 @@ class AccountInfo extends StatelessWidget {
           ],
         ),
         const SizedBox(
-          height: 150,
+          height: 300,
         )
       ]),
     );
