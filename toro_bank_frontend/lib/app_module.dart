@@ -12,6 +12,7 @@ import 'package:toro_bank_frontend/modules/presenters/pages/home/home_page.dart'
 import 'package:toro_bank_frontend/modules/presenters/pages/purchase/most-negotiated/most_negotiated_page.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/purchase/purchase-order/shop/purchase_order.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/purchase/purchase-order/shop/purchase_success.dart';
+import 'package:toro_bank_frontend/modules/presenters/pages/sing_in/sign_in_page.dart';
 
 import 'modules/domain/usecases/user/get_by_cpf.dart';
 import 'modules/presenters/datasources/user_response_datasource.dart';
@@ -31,7 +32,8 @@ class AppModule extends MainModule {
 
   @override
   List<ModularRouter> get routers => [
-        ModularRouter('/', child: (_, __) => const HomePage()),
+        ModularRouter('/', child: (_, __) => const SignInPage()),
+        ModularRouter('/home', child: (_, __) => const HomePage()),
         ModularRouter('/mostnegotiated',
             child: (_, __) => const MostNegotiatedAssetPage()),
         ModularRouter('/purchaseorder',
