@@ -15,7 +15,6 @@ class MostNegotiatedAssetPage extends StatelessWidget {
         title: const Text('Ativos mais negociados'),
       ),
       body: const Body(),
-      //bottomNavigationBar: const CustomBottomNavigationBar(),
     );
   }
 }

@@ -17,12 +17,6 @@ class PatrimonyInfo extends StatelessWidget {
     return Container(
       width: getProportionateScreenWidth(500),
       height: getProportionateScreenHeight(180),
-      // decoration: const BoxDecoration(
-      //   image: DecorationImage(
-      //     image: AssetImage("assets/images/fundo-futuristic.jpg"),
-      //     fit: BoxFit.cover,
-      //   ),
-      // ),
       padding: const EdgeInsets.only(top: 30),
       child: Column(children: [
         Text(

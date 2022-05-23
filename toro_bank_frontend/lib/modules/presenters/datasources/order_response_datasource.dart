@@ -22,15 +22,14 @@ class OrderResponseDataSource implements OrderDataSource {
     });
     final response = await dio.post('$kBaseUrl/order', data: body);
 
-    if (await IsValidResponse(response)) {
+    if (await isValidResponse(response)) {
       return response.data;
     } else {
       throw OrderDataSourceError("$genericError!");
     }
   }
 
-  //ignore: non_constant_identifier_names
-  Future<bool> IsValidResponse(Response<dynamic> response) async {
+  Future<bool> isValidResponse(Response<dynamic> response) async {
     return (response != nullValue && response.statusCode == 201);
   }
 }

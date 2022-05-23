@@ -12,8 +12,7 @@ class TrendResponseDataSource implements TrendDataSource {
   String genericError = "Erro ao retornar usuário";
   var nullValue;
 
-  // ignore: non_constant_identifier_names
-  Future<bool> IsValidResponse(Response<dynamic> response) async {
+  Future<bool> isValidResponse(Response<dynamic> response) async {
     return (response != nullValue && response.statusCode == 200);
   }
 
@@ -22,7 +21,7 @@ class TrendResponseDataSource implements TrendDataSource {
   @override
   Future<List<ResultTrendModel>> getTrends() async {
     final response = await dio.get('$kBaseUrl/trends');
-    if (await IsValidResponse(response)) {
+    if (await isValidResponse(response)) {
       final list = (response.data as List)
           .map((e) => ResultTrendModel.fromMap(e))
           .toList();

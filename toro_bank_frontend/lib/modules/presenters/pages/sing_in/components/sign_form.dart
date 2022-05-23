@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toro_bank_frontend/modules/domain/entities/token.dart';
 import 'package:toro_bank_frontend/modules/domain/errors/errors.dart';
 import 'package:toro_bank_frontend/modules/presenters/datasources/auth_response_datasource.dart';
+import 'package:toro_bank_frontend/modules/presenters/pages/shared/components/custom_snackbar_content.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/shared/components/default_button.dart';
 import 'package:toro_bank_frontend/size_config.dart';
 
@@ -47,16 +47,12 @@ class _SignFormState extends State<SignForm> {
         SizedBox(
           height: getProportionateScreenHeight(20),
         ),
-        //FormError(errors: errors),
         DefaultButton(
           text: "LOGIN",
           pressed: () {
             if ((_formKey.currentState!.validate())) {
               debugPrint('Email: $email Password: $password');
               _isLoading = true;
-              //validar o login e senha
-              //se passar, navegar para home
-              //se nao passar, mostrar mensagem de erro em algum lugar.
 
               Future.delayed(
                 const Duration(seconds: 0),
@@ -87,61 +83,16 @@ class _SignFormState extends State<SignForm> {
 
                     _isLoading = false;
                   } on AuthDataSourceError catch (e) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Stack(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(16),
-                              child: Row(
-                                children: [
-                                  const SizedBox(
-                                    width: 48,
-                                  ),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Text(
-                                          "Ops!",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        Text(
-                                          e.message,
-                                          style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 14),
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              height: 90,
-                              decoration: const BoxDecoration(
-                                  color: Color(0xFFC72C41),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20))),
-                            ),
-                            Positioned(
-                              bottom: 20,
-                              left: 10,
-                              child: Lottie.asset(
-                                  'assets/json/tomato-error.json',
-                                  width: 50,
-                                  height: 50),
-                            ),
-                          ],
-                        ),
-                        behavior: SnackBarBehavior.floating,
-                        backgroundColor: Colors.transparent,
-                        elevation: 0,
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: CustomSnackBarContent(
+                        title: 'Ops!',
+                        message: e.message,
+                        color: const Color(0xFFC72C41),
                       ),
-                    );
+                      behavior: SnackBarBehavior.floating,
+                      backgroundColor: Colors.transparent,
+                      elevation: 0,
+                    ));
                   }
 
                   _isLoading = false;
@@ -159,20 +110,12 @@ class _SignFormState extends State<SignForm> {
     return TextFormField(
       obscureText: true,
       keyboardType: TextInputType.emailAddress,
-      // ignore: prefer_const_constructors
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         hintText: "Informe sua senha",
-        label: const Text("Senha"),
+        label: Text("Senha"),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        //suffixIcon: const CustomSuffixIcon(svgIcon: "assets/icons/Lock.svg")
       ),
       validator: (value) {
-        // if (value == null || value.isEmpty) {
-        //   setState(() {
-        //     errors.add("Por favor, informe sua senha");
-        //   });
-        // }
-        //return null;
         if (value == null || value.isEmpty) {
           return "Informe uma senha.";
         }
@@ -195,12 +138,10 @@ class _SignFormState extends State<SignForm> {
         }
         return null;
       },
-      // ignore: prefer_const_constructors
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         hintText: "Email",
-        label: const Text("Email"),
+        label: Text("Email"),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        //suffixIcon: const CustomSuffixIcon(svgIcon: "assets/icons/Mail.svg"),
       ),
       onChanged: (String? value) {
         setState(() {

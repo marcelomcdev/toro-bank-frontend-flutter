@@ -49,7 +49,7 @@ class _BodyState extends State<Body> {
             name: user.name,
             bank: 'Banco: 352',
             account: 'Conta: ' + user.accountNumber.toString(),
-            assetProfileImage: 'assets/images/Profile Image.png'),
+            assetProfileImage: 'assets/images/user.png'),
         const Divider(),
         BalanceAccountInfo(
           balance: actualBalance,

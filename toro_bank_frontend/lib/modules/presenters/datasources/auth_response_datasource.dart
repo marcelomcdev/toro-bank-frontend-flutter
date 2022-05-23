@@ -18,7 +18,7 @@ class AuthUserResponseDataSource implements AuthUserDataSource {
     try {
       var body = jsonEncode({"email": email, "password": password});
       final response = await dio.post('$kBaseUrl/auth', data: body);
-      if (await IsValidResponse(response)) {
+      if (await isValidResponse(response)) {
         return ResultTokenModel.fromMap(response.data);
       } else {
         throw AuthDataSourceError(genericError);
@@ -33,14 +33,14 @@ class AuthUserResponseDataSource implements AuthUserDataSource {
     var body = jsonEncode({"token": token});
     final response =
         await dio.post('$kBaseUrl/auth/validate-token', data: body);
-    if (await IsValidResponse(response)) {
+    if (await isValidResponse(response)) {
       return response.data["id"];
     } else {
       throw AuthDataSourceError(genericError);
     }
   }
 
-  Future<bool> IsValidResponse(Response<dynamic> response) async {
+  Future<bool> isValidResponse(Response<dynamic> response) async {
     return (response != nullValue && response.statusCode == 201);
   }
 }

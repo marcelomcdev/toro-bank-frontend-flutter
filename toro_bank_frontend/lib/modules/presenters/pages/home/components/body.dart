@@ -59,11 +59,10 @@ class _BodyState extends State<Body> {
     debugPrint('state iniciado');
     Future.delayed(const Duration(seconds: 0), () async {
       prefs = await SharedPreferences.getInstance();
-      //await prefs.setInt("userId", user.id);
       userId = prefs.getInt("userId");
 
       await getUser(userId);
-      await getPositions(user.id);
+      await getPositions(userId);
 
       setState(() {
         balance = user.balance;

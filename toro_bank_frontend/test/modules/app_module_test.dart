@@ -23,13 +23,12 @@ main() {
     Bind<Dio>((i) => dio),
   ]);
 
-  test('deve recuperar o use case sem erro', () {
-    //fluxo de injeção de dependencia
+  test('should get use case withou error', () {
     final usecase = Modular.get<UserRepository>();
     expect(usecase, isA<UserRepository>());
   });
 
-  test('deve trazer um usuario', () async {
+  test('should get an user', () async {
     var id = 1;
 
     when(() => dio.get(any)).thenAnswer((_) async => Response(

@@ -28,7 +28,7 @@ main() {
       baseUrl: kBaseUrl,
       path: '/user');
 
-  test('deve completar se o código for 200', () async {
+  test('should complete if status code is 200', () async {
     var id = 1;
     var body = jsonEncode({"id": id});
     var url = '$kBaseUrl/user';
@@ -43,7 +43,7 @@ main() {
     expect(future, completes);
   });
 
-  test('retorna um erro se o código não for 200', () async {
+  test('returns error if status code is not eq 200', () async {
     var id = 0;
     var body = jsonEncode({"id": id});
     var url = '$kBaseUrl/user';
@@ -58,7 +58,7 @@ main() {
     expect(future, throwsA(isA<DataSourceError>()));
   });
 
-  test('deve retornar um erro se tiver erro no dio', () async {
+  test('should have return an error if has error in dio', () async {
     var id = 0;
     var body = jsonEncode({"id": 0});
     when(() => dio.post(any, data: body)).thenAnswer((_) async => Response(

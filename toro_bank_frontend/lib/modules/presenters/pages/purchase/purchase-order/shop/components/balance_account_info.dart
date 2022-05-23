@@ -25,7 +25,7 @@ class BalanceAccountInfo extends StatelessWidget {
             Row(
               children: [
                 const Expanded(
-                  flex: 7,
+                  flex: 9,
                   child: Text('Conta Corrente'),
                 ),
                 Expanded(

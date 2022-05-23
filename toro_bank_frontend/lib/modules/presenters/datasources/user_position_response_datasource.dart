@@ -12,8 +12,7 @@ class UserPositionResponseDataSource implements UserPositionDataSource {
   String genericError = "Erro ao retornar usuário";
   var nullValue;
 
-  // ignore: non_constant_identifier_names
-  Future<bool> IsValidResponse(Response<dynamic> response) async {
+  Future<bool> isValidResponse(Response<dynamic> response) async {
     return (response != nullValue && response.statusCode == 200);
   }
 
@@ -23,7 +22,7 @@ class UserPositionResponseDataSource implements UserPositionDataSource {
 
     final response = await dio.get('$kBaseUrl/userposition/$id');
 
-    if (await IsValidResponse(response)) {
+    if (await isValidResponse(response)) {
       var user = ResultUserPositionModel.fromJson(response.data);
       return user;
     } else {

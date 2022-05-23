@@ -31,7 +31,6 @@ class CustomBottomNavigationBar extends StatelessWidget {
         BottomNavigationBarItem(
             icon: Icon(Icons.account_circle_rounded), label: 'Perfil'),
       ],
-      //currentIndex: _selectedIndex,
       selectedItemColor: kToroTextColor,
     );
   }

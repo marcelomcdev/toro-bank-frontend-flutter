@@ -1,4 +1,4 @@
-// ignore_for_file: override_on_non_overriding_member, prefer_typing_uninitialized_variables
+// ignore_for_file: override_on_non_overriding_member, prefer_typing_uninitialized_variables, non_constant_identifier_names
 
 import 'dart:convert';
 
@@ -20,8 +20,7 @@ class UserResponseDataSource implements UserDataSource {
   String genericError = "Erro ao retornar usuário";
   var nullValue;
 
-  // ignore: non_constant_identifier_names
-  Future<bool> IsValidResponse(Response<dynamic> response) async {
+  Future<bool> isValidResponse(Response<dynamic> response) async {
     return (response != nullValue && response.statusCode == 200);
   }
 
@@ -31,7 +30,7 @@ class UserResponseDataSource implements UserDataSource {
 
     final response = await dio.post('$kBaseUrl/user', data: body);
 
-    if (await IsValidResponse(response)) {
+    if (await isValidResponse(response)) {
       var user = ResultUserModel.fromMap(response.data);
       return user;
     } else {
@@ -43,7 +42,7 @@ class UserResponseDataSource implements UserDataSource {
   Future<ResultUserModel> getUserByCpf(String cpf) async {
     var body = jsonEncode({"cpf": cpf});
     final response = await dio.post('$kBaseUrl/user/', data: body);
-    if (await IsValidResponse(response)) {
+    if (await isValidResponse(response)) {
       var user = ResultUserModel.fromMap(response.data);
       return user;
     } else {
@@ -54,7 +53,7 @@ class UserResponseDataSource implements UserDataSource {
   @override
   Future<List<ResultUserModel>> getList(String cpf) async {
     final response = await dio.get('$kBaseUrl/user'.normalize());
-    if (await IsValidResponse(response)) {
+    if (await isValidResponse(response)) {
       final list = (response.data as List)
           .map((e) => ResultUserModel.fromMap(e))
           .toList();

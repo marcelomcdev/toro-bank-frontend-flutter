@@ -29,7 +29,7 @@ class Body extends StatelessWidget {
                 "Vamos começar?",
                 style: TextStyle(
                     color: Colors.black,
-                    fontSize: 20, //getProportionateScreenWidth(8),
+                    fontSize: 20,
                     fontWeight: FontWeight.bold),
               ),
               const Text(
