@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+
 import 'package:toro_bank_frontend/modules/presenters/helpers/format_helper.dart';
 import 'package:toro_bank_frontend/size_config.dart';
 
 class PatrimonyInfo extends StatelessWidget {
   final double consolidated;
+  final String userName;
   const PatrimonyInfo({
     Key? key,
     required this.consolidated,
+    required this.userName,
   }) : super(key: key);
 
   @override
@@ -20,11 +23,11 @@ class PatrimonyInfo extends StatelessWidget {
       //     fit: BoxFit.cover,
       //   ),
       // ),
-      padding: const EdgeInsets.only(top: 40),
+      padding: const EdgeInsets.only(top: 30),
       child: Column(children: [
-        const Text(
-          'Olá Marcelo, seu patrimônio hoje:',
-          style: TextStyle(
+        Text(
+          'Olá $userName, seu patrimônio hoje:',
+          style: const TextStyle(
             color: Colors.white,
             fontFamily: 'Muli',
             fontSize: 16,
