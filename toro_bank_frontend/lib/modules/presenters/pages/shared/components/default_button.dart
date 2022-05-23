@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:toro_bank_frontend/constants.dart';
 
-class DefaultButtom extends StatelessWidget {
+class DefaultButton extends StatelessWidget {
   final String text;
   final VoidCallback? pressed;
   final bool disabled;
+  final TextStyle? textStyle;
 
-  const DefaultButtom({
+  const DefaultButton({
     Key? key,
     required this.text,
     this.pressed,
     this.disabled = false,
+    this.textStyle,
   }) : super(key: key);
 
   @override
@@ -41,10 +43,10 @@ class DefaultButtom extends StatelessWidget {
                             horizontal: 110, vertical: 15),
                         primary: Colors.white,
                         backgroundColor:
-                            disabled ? Colors.grey : kToroTextColor,
+                            disabled ? Colors.grey : kToroHeaderColor,
                         textStyle: const TextStyle(fontSize: 20)),
                     onPressed: disabled ? null : pressed,
-                    child: Text(text),
+                    child: Text(text, style: textStyle),
                   ),
                 ],
               ),

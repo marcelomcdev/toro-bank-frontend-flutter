@@ -184,7 +184,7 @@ class _PurchaseInfoState extends State<PurchaseInfo> {
           ),
         ),
         if (_showValidator) const PurchaseValidator() else Container(),
-        DefaultButtom(
+        DefaultButton(
           text: 'CONFIRMAR',
           pressed: () {
             Navigator.pushReplacement(
