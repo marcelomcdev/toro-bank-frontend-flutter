@@ -8,35 +8,37 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return SafeArea(
-      child: SizedBox(
-        width: double.infinity,
-        child: Padding(
-          padding:
-              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(30)),
-          child: Column(children: [
-            Padding(
-              padding:
-                  EdgeInsets.only(bottom: getProportionateScreenHeight(10)),
-              child: Image.asset(
-                'assets/images/toro.png',
-                height: getProportionateScreenHeight(84),
-                width: getProportionateScreenWidth(84),
+    return SingleChildScrollView(
+      child: SafeArea(
+        child: SizedBox(
+          width: double.infinity,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: getProportionateScreenWidth(30)),
+            child: Column(children: [
+              Padding(
+                padding:
+                    EdgeInsets.only(bottom: getProportionateScreenHeight(10)),
+                child: Image.asset(
+                  'assets/images/toro.png',
+                  height: getProportionateScreenHeight(84),
+                  width: getProportionateScreenWidth(84),
+                ),
               ),
-            ),
-            const Text(
-              "Vamos começar?",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20, //getProportionateScreenWidth(8),
-                  fontWeight: FontWeight.bold),
-            ),
-            const Text(
-              "Faça o login com seu e-mail e senha. \npara ter acesso aos nossos serviços.",
-              textAlign: TextAlign.center,
-            ),
-            const SignForm(),
-          ]),
+              const Text(
+                "Vamos começar?",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20, //getProportionateScreenWidth(8),
+                    fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                "Faça o login com seu e-mail e senha. \npara ter acesso aos nossos serviços.",
+                textAlign: TextAlign.center,
+              ),
+              const SignForm(),
+            ]),
+          ),
         ),
       ),
     );

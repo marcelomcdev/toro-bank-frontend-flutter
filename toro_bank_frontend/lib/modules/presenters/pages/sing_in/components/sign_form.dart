@@ -6,7 +6,6 @@ import 'package:toro_bank_frontend/modules/domain/entities/token.dart';
 import 'package:toro_bank_frontend/modules/domain/errors/errors.dart';
 import 'package:toro_bank_frontend/modules/presenters/datasources/auth_response_datasource.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/shared/components/default_button.dart';
-import 'package:toro_bank_frontend/modules/presenters/pages/sing_in/components/form_error.dart';
 import 'package:toro_bank_frontend/size_config.dart';
 
 class SignForm extends StatefulWidget {
@@ -40,7 +39,7 @@ class _SignFormState extends State<SignForm> {
     return Form(
       key: _formKey,
       child: Column(children: <Widget>[
-        _isLoading ? const CircularProgressIndicator() : buildEmailFormField(),
+        buildEmailFormField(),
         SizedBox(
           height: getProportionateScreenHeight(20),
         ),
@@ -48,102 +47,107 @@ class _SignFormState extends State<SignForm> {
         SizedBox(
           height: getProportionateScreenHeight(20),
         ),
-        FormError(errors: errors),
+        //FormError(errors: errors),
         DefaultButton(
           text: "LOGIN",
           pressed: () {
-            debugPrint('Email: $email Password: $password');
-            _isLoading = true;
-            //validar o login e senha
-            //se passar, navegar para home
-            //se nao passar, mostrar mensagem de erro em algum lugar.
+            if ((_formKey.currentState!.validate())) {
+              debugPrint('Email: $email Password: $password');
+              _isLoading = true;
+              //validar o login e senha
+              //se passar, navegar para home
+              //se nao passar, mostrar mensagem de erro em algum lugar.
 
-            Future.delayed(
-              const Duration(seconds: 0),
-              () async {
-                try {
-                  await datasource
-                      .authUser("$email", "$password")
-                      .then((value) => {response = value, _isLoading = true});
-
-                  var _accessToken = response?.accessToken;
-                  debugPrint("Token=$_accessToken");
-
-                  if (_accessToken != '') {
-                    prefs = await SharedPreferences.getInstance();
-                    await prefs?.setString("token", _accessToken);
-
+              Future.delayed(
+                const Duration(seconds: 0),
+                () async {
+                  try {
                     await datasource
-                        .getIdByToken("$_accessToken")
-                        .then((value) => userId = value);
+                        .authUser("$email", "$password")
+                        .then((value) => {response = value, _isLoading = true});
 
-                    await prefs?.setInt("userId", userId);
+                    var _accessToken = response?.accessToken;
+                    debugPrint("Token=$_accessToken");
 
-                    debugPrint(
-                        "login: id=" + prefs!.getInt("userId").toString());
+                    if (_accessToken != '') {
+                      prefs = await SharedPreferences.getInstance();
+                      await prefs?.setString("token", _accessToken);
 
-                    Navigator.pushReplacementNamed(context, '/home');
+                      await datasource
+                          .getIdByToken("$_accessToken")
+                          .then((value) => userId = value);
+
+                      await prefs?.setInt("userId", userId);
+
+                      debugPrint(
+                          "login: id=" + prefs!.getInt("userId").toString());
+
+                      Navigator.pushReplacementNamed(context, '/home');
+                    }
+
+                    _isLoading = false;
+                  } on AuthDataSourceError catch (e) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Stack(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(16),
+                              child: Row(
+                                children: [
+                                  const SizedBox(
+                                    width: 48,
+                                  ),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Text(
+                                          "Ops!",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          e.message,
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14),
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              height: 90,
+                              decoration: const BoxDecoration(
+                                  color: Color(0xFFC72C41),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20))),
+                            ),
+                            Positioned(
+                              bottom: 20,
+                              left: 10,
+                              child: Lottie.asset(
+                                  'assets/json/tomato-error.json',
+                                  width: 50,
+                                  height: 50),
+                            ),
+                          ],
+                        ),
+                        behavior: SnackBarBehavior.floating,
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                      ),
+                    );
                   }
 
                   _isLoading = false;
-                } on AuthDataSourceError catch (e) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Stack(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(16),
-                            child: Row(
-                              children: [
-                                const SizedBox(
-                                  width: 48,
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      const Text(
-                                        "Ops!",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        e.message,
-                                        style: const TextStyle(
-                                            color: Colors.white, fontSize: 14),
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            height: 90,
-                            decoration: const BoxDecoration(
-                                color: Color(0xFFC72C41),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20))),
-                          ),
-                          Positioned(
-                            bottom: 20,
-                            left: 10,
-                            child: Lottie.asset('assets/json/tomato-error.json',
-                                width: 50, height: 50),
-                          ),
-                        ],
-                      ),
-                      behavior: SnackBarBehavior.floating,
-                      backgroundColor: Colors.transparent,
-                      elevation: 0,
-                    ),
-                  );
-                }
-
-                _isLoading = false;
-              },
-            );
+                },
+              );
+            }
           },
           textStyle: const TextStyle(color: Colors.white),
         ),
@@ -162,6 +166,18 @@ class _SignFormState extends State<SignForm> {
         floatingLabelBehavior: FloatingLabelBehavior.always,
         //suffixIcon: const CustomSuffixIcon(svgIcon: "assets/icons/Lock.svg")
       ),
+      validator: (value) {
+        // if (value == null || value.isEmpty) {
+        //   setState(() {
+        //     errors.add("Por favor, informe sua senha");
+        //   });
+        // }
+        //return null;
+        if (value == null || value.isEmpty) {
+          return "Informe uma senha.";
+        }
+        return null;
+      },
       onChanged: (String? value) {
         setState(() {
           password = value;
@@ -175,15 +191,13 @@ class _SignFormState extends State<SignForm> {
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
         if (value?.isEmpty == true) {
-          setState(() {
-            errors.add("Por favor, informe seu e-mail");
-          });
+          return 'Informe uma e-mail!';
         }
         return null;
       },
       // ignore: prefer_const_constructors
       decoration: InputDecoration(
-        hintText: "Informe seu email",
+        hintText: "Email",
         label: const Text("Email"),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         //suffixIcon: const CustomSuffixIcon(svgIcon: "assets/icons/Mail.svg"),
