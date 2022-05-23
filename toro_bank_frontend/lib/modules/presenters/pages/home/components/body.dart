@@ -34,9 +34,10 @@ class _BodyState extends State<Body> {
 
   late final SharedPreferences prefs;
   late bool _isLoading = true;
+  late int userId = 0;
 
-  getUser() async {
-    await datasource.getUser(1).then((value) => {
+  getUser(int userId) async {
+    await datasource.getUser(userId).then((value) => {
           user = value,
         });
   }
@@ -57,10 +58,11 @@ class _BodyState extends State<Body> {
     _isLoading = true;
     debugPrint('state iniciado');
     Future.delayed(const Duration(seconds: 0), () async {
-      await getUser();
       prefs = await SharedPreferences.getInstance();
-      await prefs.setInt("userId", user.id);
+      //await prefs.setInt("userId", user.id);
+      userId = prefs.getInt("userId");
 
+      await getUser(userId);
       await getPositions(user.id);
 
       setState(() {
@@ -81,7 +83,7 @@ class _BodyState extends State<Body> {
   Future<void> _pullRefresh() async {
     debugPrint('pulled...');
     Future.delayed(const Duration(seconds: 0), () async {
-      await getUser();
+      await getUser(userId);
       await getPositions(user.id);
       setState(() {
         balance = user.balance;
@@ -180,6 +182,7 @@ class _BodyState extends State<Body> {
                 child: ListView(children: [
                   PatrimonyInfo(
                     consolidated: userPosition.consolidated,
+                    userName: user.name.split(' ')[0],
                   ),
                   AccountInfo(
                     balance: userPosition.checkingAccountAmount,
