@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/shared/drawer/app_drawer_header.dart';
 import 'package:toro_bank_frontend/modules/presenters/pages/shared/drawer/app_drawer_item.dart';
 
@@ -15,7 +16,7 @@ class AppDrawer extends StatelessWidget {
           AppDrawerItem(
             icon: Icons.home,
             text: 'Home',
-            onTap: () => Navigator.pushReplacementNamed(context, '/'),
+            onTap: () => Navigator.pushReplacementNamed(context, '/home'),
           ),
           AppDrawerItem(
             icon: Icons.whatshot,
@@ -24,8 +25,24 @@ class AppDrawer extends StatelessWidget {
                 Navigator.pushReplacementNamed(context, '/mostnegotiated'),
           ),
           const Divider(),
-          AppDrawerItem(icon: Icons.account_box_rounded, text: 'Perfil'),
-          AppDrawerItem(icon: Icons.bug_report, text: 'Reportar problema'),
+          AppDrawerItem(
+            icon: Icons.exit_to_app,
+            text: 'Sair',
+            onTap: () => {
+              Future.delayed(const Duration(seconds: 0), () async {
+                var prefs = await SharedPreferences.getInstance();
+
+                if (prefs.getInt("userId") > 0) {
+                  await prefs.remove("userId");
+                }
+
+                if (prefs.getString("token") != "") {
+                  await prefs.remove("token");
+                }
+              }),
+              Navigator.pushReplacementNamed(context, '/')
+            },
+          ),
         ],
       ),
     );
