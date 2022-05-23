@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82d2f015-b501-42e1-a1de-b07a3aebafc0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/lib/app_module.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/lib/app_module.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/pages/purchase/purchase-order/shop/components/purchase_info.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/pages/purchase/purchase-order/shop/components/purchase_info.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/pages/shared/components/default_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/toro_bank_frontend/lib/modules/presenters/pages/shared/components/default_button.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,10 +54,10 @@
       <screen x="1920" y="0" width="1920" height="1050" />
     </state>
     <state x="2061" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1652812254945" />
-    <state x="83" y="139" width="1166" height="513" key="AVDManager" timestamp="1653248412184">
+    <state x="83" y="139" width="1166" height="513" key="AVDManager" timestamp="1653321028507">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="83" y="139" width="1166" height="513" key="AVDManager/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1653248412184" />
+    <state x="83" y="139" width="1166" height="513" key="AVDManager/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1653321028507" />
     <state x="2024" y="174" width="1166" height="513" key="AVDManager/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1653154391971" />
   </component>
 </project>
