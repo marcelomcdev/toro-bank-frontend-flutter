@@ -15,12 +15,16 @@ class AuthUserResponseDataSource implements AuthUserDataSource {
 
   @override
   Future<Token?> authUser(String email, String password) async {
-    var body = jsonEncode({"email": email, "password": password});
-    final response = await dio.post('$kBaseUrl/auth', data: body);
-    if (await IsValidResponse(response)) {
-      return ResultTokenModel.fromMap(response.data);
-    } else {
-      throw AuthDataSourceError(genericError);
+    try {
+      var body = jsonEncode({"email": email, "password": password});
+      final response = await dio.post('$kBaseUrl/auth', data: body);
+      if (await IsValidResponse(response)) {
+        return ResultTokenModel.fromMap(response.data);
+      } else {
+        throw AuthDataSourceError(genericError);
+      }
+    } catch (e) {
+      throw AuthDataSourceError('Usuário ou senha inválidos!');
     }
   }
 
@@ -30,13 +34,13 @@ class AuthUserResponseDataSource implements AuthUserDataSource {
     final response =
         await dio.post('$kBaseUrl/auth/validate-token', data: body);
     if (await IsValidResponse(response)) {
-      return response.data;
+      return response.data["id"];
     } else {
       throw AuthDataSourceError(genericError);
     }
   }
 
   Future<bool> IsValidResponse(Response<dynamic> response) async {
-    return (response != nullValue && response.statusCode == 200);
+    return (response != nullValue && response.statusCode == 201);
   }
 }
