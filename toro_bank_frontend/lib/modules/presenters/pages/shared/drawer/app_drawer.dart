@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:toro_bank_frontend/modules/presenters/pages/shared/drawer/app_drawer_header.dart';
-import 'package:toro_bank_frontend/modules/presenters/pages/shared/drawer/app_drawer_item.dart';
+import 'package:toro_bank_frontend/modules/presenters/pages/shared/drawer/components/app_drawer_header.dart';
+import 'package:toro_bank_frontend/modules/presenters/pages/shared/drawer/components/app_drawer_item.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({Key? key}) : super(key: key);
@@ -14,8 +14,8 @@ class AppDrawer extends StatelessWidget {
         children: <Widget>[
           AppDrawerHeader(),
           AppDrawerItem(
-            icon: Icons.home,
-            text: 'Home',
+            icon: Icons.monetization_on,
+            text: 'Seu patrimônio',
             onTap: () => Navigator.pushReplacementNamed(context, '/home'),
           ),
           AppDrawerItem(
