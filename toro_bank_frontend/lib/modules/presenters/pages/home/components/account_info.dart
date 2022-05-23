@@ -34,16 +34,14 @@ class AccountInfo extends StatelessWidget {
           children: [
             TotalValueBox(
               title: 'Total investido',
-              value: investiments == 0.0
-                  ? '-'
-                  : FormatHelper().getCurrency(investiments),
+              value: FormatHelper().getCurrency(investiments),
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               margin:
                   const EdgeInsets.symmetric(horizontal: 1.5, vertical: 5.0),
             ),
             TotalValueBox(
               title: 'Saldo disponível',
-              value: balance == 0.0 ? '-' : FormatHelper().getCurrency(balance),
+              value: FormatHelper().getCurrency(balance),
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               margin: const EdgeInsets.symmetric(horizontal: 1.5, vertical: 5),
             ),

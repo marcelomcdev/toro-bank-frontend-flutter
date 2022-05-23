@@ -14,7 +14,8 @@ class Body extends StatelessWidget {
           width: double.infinity,
           child: Padding(
             padding: EdgeInsets.symmetric(
-                horizontal: getProportionateScreenWidth(30)),
+                horizontal: getProportionateScreenWidth(30),
+                vertical: getProportionateScreenHeight(20)),
             child: Column(children: [
               Padding(
                 padding:

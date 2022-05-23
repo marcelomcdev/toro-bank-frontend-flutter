@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toro_bank_frontend/constants.dart';
+import 'package:toro_bank_frontend/size_config.dart';
 
 class TotalValueBox extends StatelessWidget {
   final String title;
@@ -18,6 +19,7 @@ class TotalValueBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: getProportionateScreenWidth(170),
       margin: margin,
       padding: padding,
       decoration: BoxDecoration(
@@ -53,7 +55,7 @@ class TotalValueBox extends StatelessWidget {
             style: const TextStyle(
               color: kToroBlackColor,
               fontFamily: 'Muli',
-              fontSize: 22,
+              fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.center,

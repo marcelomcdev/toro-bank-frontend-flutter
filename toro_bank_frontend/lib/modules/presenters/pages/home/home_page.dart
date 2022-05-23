@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: const Text(
-          'Resumo do Patrimônio',
+          '',
           style: TextStyle(fontSize: 16),
         ),
       ),

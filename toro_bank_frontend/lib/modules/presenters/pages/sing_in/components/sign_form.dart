@@ -85,7 +85,7 @@ class _SignFormState extends State<SignForm> {
                   } on AuthDataSourceError catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: CustomSnackBarContent(
-                        title: 'Ops!',
+                        title: 'Não autorizado',
                         message: e.message,
                         color: const Color(0xFFC72C41),
                       ),
