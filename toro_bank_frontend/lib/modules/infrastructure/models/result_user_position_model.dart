@@ -28,7 +28,7 @@ class ResultUserPositionModel extends UserPosition {
     }
     checkingAccountAmount = json['checkingAccountAmount'];
     consolidated = json['consolidated'];
-    investments = json['investments'];
+    investments = double.parse(json['investments'].toString());
   }
 
   Map<String, dynamic> toJson() {
